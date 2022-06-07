@@ -1,0 +1,113 @@
+.uploading {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 50%);
+          transform: translate(-50%, 50%);
+  z-index: 999;
+  display: none;
+  background-color: #d9e1e8;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.uploading.visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1.5rem;
+          column-gap: 1.5rem;
+}
+
+.uploading .left_side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  row-gap: 0.3rem;
+  position: relative;
+  width: 300px;
+}
+
+.uploading .left_side .title {
+  font-size: 16px;
+}
+
+.uploading .left_side .uploading_progress {
+  width: 100%;
+  background-color: white;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.uploading .left_side .uploading_progress .uploading_progress_bar {
+  height: 100%;
+  border-radius: 4px;
+  background-color: #6986A5;
+}
+
+.uploading .left_side::after {
+  content: "";
+  height: 60%;
+  width: 2px;
+  background-color: white;
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+
+.uploading .right_side {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  row-gap: 0.5rem;
+}
+
+.uploading .right_side .uploading_icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.uploading .right_side .uploading_icons .uploading_icon {
+  color: #6986A5;
+  cursor: pointer;
+}
+
+.uploading .right_side .uploading_icons .uploading_icon:hover {
+  background-color: white;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 720px) {
+  .uploading.visible {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .uploading .left_side::after {
+    display: none;
+  }
+  .uploading .right_side {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    width: 300px;
+    height: 60px;
+  }
+}
+/*# sourceMappingURL=Uploading.css.map */
