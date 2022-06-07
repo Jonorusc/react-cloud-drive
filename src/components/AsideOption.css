@@ -1,0 +1,39 @@
+.aside_options {
+  margin-top: 5px;
+  color: #6986A5;
+  border-radius: 5px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: pointer;
+}
+
+.aside_options.active {
+  color: white;
+  background-color: #6986A5;
+}
+
+.aside_options.active .option {
+  color: white;
+}
+
+.aside_options .option {
+  color: #0B0C0F;
+  margin-left: 0.2rem;
+}
+
+.aside_options:hover {
+  background-color: #6986A550;
+}
+
+.aside_options:hover.active {
+  background-color: #6986A5;
+}
+/*# sourceMappingURL=AsideOption.css.map */

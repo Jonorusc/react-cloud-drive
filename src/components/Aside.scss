@@ -1,0 +1,25 @@
+aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #d9e1e8;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding-top: 80px;
+    transition: .4s ease;
+    z-index: 2;
+}
+
+@media screen and (max-width: 720px) {
+    aside {
+        transform: translateX(-100%);
+    }
+    aside.active {
+        transform: translateX(0);
+    }
+}

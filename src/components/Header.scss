@@ -1,0 +1,92 @@
+header {
+    position: absolute;
+    top: 0;
+    background-color: #6986A5;
+    height: 60px;
+    width: 100%;
+    z-index: 999;
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 30px 0 30px;
+        box-sizing: border-box;
+        .header__logo {
+            color: white;
+            display: flex;
+            align-items: center;
+            column-gap: 0.2rem;
+            cursor: pointer;
+        }
+        .header__search {
+            padding-left: 0.4rem;
+            background-color: white;
+            width: 277px;
+            height: 30px;
+            border-radius: 4px;
+            color: #6986A5;
+            display: flex;
+            align-items: center;
+            column-gap: 0.4rem;
+            .header_serachIcon{
+                cursor: pointer;
+            }
+            .header_menu {
+                display: none;
+                cursor: pointer;
+                .line{
+                    width: 24px;
+                    height: 2px;
+                    background-color: white;
+                    margin: 5px 0;
+                    transition: 1.2s ease;
+                }
+            }
+            .header_menu.active {
+                .one {
+                    transform: translate(-5px, 7px) rotate(-45deg);
+                }
+                .two {
+                    transform: translateX(1000px);
+                }
+                .three {
+                    transform: translate(-5px, -7px) rotate(45deg);
+                }
+            }
+            .header_input {
+                flex: 1;
+                outline: none;
+                border: none;
+                background-color: transparent;
+                color: #223042;
+                font-size: 12px;
+            }
+        }
+        
+    }
+}
+
+@media screen and (max-width: 720px){
+    header {
+        nav {
+            .header__search {
+                background-color: unset;
+                color: white;
+                width: auto;
+                .header_menu {
+                    display: block;
+                }
+                .header_input {
+                    display: none;
+                }
+                .header_input.active {
+                    background-color: white;
+                    padding: 0.3rem 0.6rem;
+                    border-radius: 4px;
+                    display: block;
+                }
+            }
+        }
+    }
+}

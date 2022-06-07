@@ -1,0 +1,61 @@
+.user {
+  color: #0B0C0F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.user .user_name {
+  margin-left: 0.3rem;
+}
+
+.user .user_modal {
+  position: absolute;
+  top: 0;
+  left: 250px;
+  height: auto;
+  width: 100%;
+  background-color: #d9e1e8;
+  text-align: start;
+  padding: 0.3rem;
+  border-radius: 5px;
+  -webkit-transform: translate(-1000px);
+          transform: translate(-1000px);
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
+}
+
+.user .user_modal::after {
+  content: " ";
+  width: 15px;
+  height: 15px;
+  background-color: #d9e1e8;
+  position: absolute;
+  top: 15%;
+  left: -2%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  z-index: -1;
+}
+
+.user .user_modal.active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+@media screen and (max-width: 720px) {
+  .user .user_modal {
+    top: 50px;
+    left: 0;
+    border: 2px solid #6986A5;
+  }
+  .user .user_modal::after {
+    display: none;
+  }
+}
+/*# sourceMappingURL=User.css.map */
