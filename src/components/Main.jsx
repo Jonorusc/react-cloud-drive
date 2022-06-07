@@ -1,12 +1,12 @@
 import React from 'react'
-import MainHeader from './MainHeader'
+import MainContent from './MainContent'
 
 import './Main.css'
 
 function Main() {
     return (
         <main>
-            <MainHeader/>
+            <MainContent />
         </main>
     )
 }
