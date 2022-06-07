@@ -1,9 +1,9 @@
 aside {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 250px;
-    height: 100vh;
+    height: 100%;
     background-color: #d9e1e8;
     padding: 30px;
     box-sizing: border-box;
@@ -12,7 +12,7 @@ aside {
     row-gap: 2rem;
     padding-top: 80px;
     transition: .4s ease;
-    z-index: 2;
+    z-index: 900;
 }
 
 @media screen and (max-width: 720px) {
