@@ -2,8 +2,7 @@ import React from 'react'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
 import AutoDeleteRoundedIcon from '@mui/icons-material/AutoDeleteRounded'
-import SystemUpdateAltRoundedIcon from '@mui/icons-material/SystemUpdateAltRounded'
-
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded'
 import './MainHeader.css'
 
 function HeaderItem({ Icon, title }) {
@@ -21,7 +20,7 @@ function MainHeader() {
         <HeaderItem Icon={AddRoundedIcon} title='New'/>
         <HeaderItem Icon={DriveFileRenameOutlineRoundedIcon} title='Rename'/>
         <HeaderItem Icon={AutoDeleteRoundedIcon} title='Move to Trash'/>
-        <HeaderItem Icon={SystemUpdateAltRoundedIcon} title='Download'/>
+        <HeaderItem Icon={FileDownloadRoundedIcon} title='Download'/>
     </div>
   )
 }
