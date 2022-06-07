@@ -3,7 +3,7 @@ here is an app created with react.js. Inspired by dropbox, it was created with t
 
 
 
-## Referência
+## Reference
 
  - [Figma project](https://www.figma.com/file/5vxpStcUYKiOoHlxBIMF69/Untitled?node-id=8%3A18)
 
