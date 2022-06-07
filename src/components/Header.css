@@ -1,6 +1,7 @@
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   background-color: #6986A5;
   height: 60px;
   width: 100%;
