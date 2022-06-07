@@ -5,6 +5,11 @@
     display: flex;
     align-items: center;
     column-gap: 1rem;
+    position: fixed;
+    top: 60px;
+    left: 250px;
+    z-index: 800;
+    background-color: white;
     .main_header_item_icon {
         font-size: 24px;
     }
@@ -17,8 +22,12 @@
         box-sizing: border-box;
         height: 100%;
         padding: 0.3rem;
+        column-gap: 0.4rem;
+        .title {
+            font-size: 14px;
+        }
         &::after {
-            content: " | ";
+            content: "|";
             position: absolute;
             left: calc(100% + 5px); 
         }
@@ -34,7 +43,16 @@
 
 @media screen and (max-width: 720px) {
     .main_header {
+        justify-content: center;
+        left: 0;
         .main_header_item {
+            padding: 0;
+            column-gap: unset;
+            &::after {
+                content: "|";
+                position: absolute;
+                left: calc(100% + 2px); 
+            }
             .main_header_item_icon {
                 font-size: 14px;
             }

@@ -7,7 +7,9 @@ import './MainHeader.css'
 
 function HeaderItem({ Icon, title }) {
     return (
-        <div className="main_header_item">
+        <div className="main_header_item" 
+            onClick={() => console.log(title)}
+        >
             {Icon && <Icon className="main_header_item_icon" />}
             <span className="title">{title}</span>
         </div>
