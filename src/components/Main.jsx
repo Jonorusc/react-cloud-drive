@@ -1,13 +1,14 @@
 import React from 'react'
+import MainHeader from './MainHeader'
 
 import './Main.css'
 
 function Main() {
-  return (
-    <main>
-        asds
-    </main>
-  )
+    return (
+        <main>
+            <MainHeader/>
+        </main>
+    )
 }
 
 export default Main
