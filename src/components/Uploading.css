@@ -32,7 +32,7 @@
           flex-direction: column;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
+          justify-content: flex-start;
   row-gap: 0.3rem;
   position: relative;
   width: 300px;
