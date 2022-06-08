@@ -40,41 +40,6 @@ function MainContent() {
                 <ContentItem img={video} title="video.mp4"/>
                 <ContentItem img={image} title="image.jpeg"/>
                 <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
-                <ContentItem img={folder} title="folder"/>
-                <ContentItem img={doc} title="document"/>
-                <ContentItem img={video} title="video.mp4"/>
-                <ContentItem img={image} title="image.jpeg"/>
-                <ContentItem img={pdf} title="document.pdf"/>
             </div>
         </div>
     )
