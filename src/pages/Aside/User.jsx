@@ -1,31 +1,23 @@
-import React, {useRef} from 'react'
+import React, { useState } from 'react'
 import Avatar from '@mui/material/Avatar' 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import AsideOption from './AsideOption'
+import AsideOption from '../Aside/AsideOption'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 
-import userProfile from '../images/WhatsApp Image 2022-04-27 at 13.26.56.jpeg'
+import userProfile from '../../images/WhatsApp Image 2022-04-27 at 13.26.56.jpeg'
 import './User.css'
 
 function User( {name} ) {
-    // const [open, setOpen] = useState(),
-    const modalRef = useRef()
+    const [modal, openModal] = useState(false)
 
-    // useEffect(() => {
-    //     if(modalRef.current !== null && modalRef.current !== undefined) {
-    //         setTimeout(() => {
-    //             modalRef.current.classList.toggle('active')
-    //         }, 10);
-    //     }
-    // }, [open])
+    function handleModal() {
+        modal ? openModal(false) : openModal(true)
+    }
 
     function Modal() {
         return (
-            <div 
-                ref={modalRef}
-                className='user_modal' 
-            >
+            <div className={modal ? "user_modal active" : "user_modal"} >
                 <AsideOption Icon={AccountCircleRoundedIcon} option='My Profile' active={false}/>
                 <AsideOption Icon={LogoutRoundedIcon} option='Log-out' active={false}/>
             </div>
@@ -33,13 +25,13 @@ function User( {name} ) {
     }
 
     return (
-        <div className='user' onClick={() => {modalRef.current.classList.toggle('active')}}>
+        <div className='user' onClick={() => {handleModal()}}>
             <Avatar sx={{
                 width: 40, height: 40}} 
                 src={userProfile}
             />
             <span className="user_name">{name}</span>
-            <ArrowDropDownIcon />
+            <ArrowDropDownIcon sx={{transform: modal ? 'rotate(180deg)' : ''}}/>
 
             <Modal />
         </div>

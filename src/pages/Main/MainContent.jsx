@@ -1,10 +1,10 @@
 import React from 'react'
 // images
-import folder from '../images/folder.svg'
-import doc from '../images/document.svg'
-import video from '../images/video.svg'
-import image from '../images/image.svg'
-import pdf from '../images/pdf.svg'
+import folder from '../../images/folder.svg'
+import doc from '../../images/document.svg'
+import video from '../../images/video.svg'
+import image from '../../images/image.svg'
+import pdf from '../../images/pdf.svg'
 
 import './MainContent.css'
 
