@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import Header from './Header'
-import Aside from './Aside'
-import MainHeader from './MainHeader'
-import Main from './Main'
-import Uploading from './Uploading'
+import { Routes, Route } from 'react-router-dom'
+import Header from '../pages/Header/Header'
+import Aside from '../pages/Aside/Aside'
+import MainHeader from '../pages/MainHeader/MainHeader'
+import Main from '../pages/Main/Main'
+import Uploading from './Uploading/Uploading'
 
 
 function App() {
@@ -13,13 +14,23 @@ function App() {
         setHideSdebar(action)
     }
 
+    function Home() {
+        return (
+            <>
+                <Header hideAside={hideSidebar} />
+                <Aside hideSidebar={hidesidebar} />
+                <MainHeader />
+                <Main />
+                <Uploading visible={true}/>
+            </>
+        )
+    }
+
     return (
         <>
-            <Header hideAside={hideSidebar} />
-            <Aside hideSidebar={hidesidebar} />
-            <MainHeader />
-            <Main />
-            <Uploading visible={true}/>
+            <Routes>
+                <Route path='/' element={<Home />} exact />
+            </Routes>
         </>
     )
 }

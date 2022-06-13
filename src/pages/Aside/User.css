@@ -16,16 +16,16 @@
 
 .user .user_modal {
   position: absolute;
-  top: 0;
-  left: 250px;
+  top: 60px;
+  left: 0;
   height: auto;
   width: 100%;
-  background-color: #d9e1e8;
+  background-color: #fff;
   text-align: start;
   padding: 0.3rem;
   border-radius: 5px;
-  -webkit-transform: translate(-1000px);
-          transform: translate(-1000px);
+  -webkit-transform: translateY(-1000px);
+          transform: translateY(-1000px);
   -webkit-transition: 500ms ease;
   transition: 500ms ease;
 }
@@ -34,28 +34,17 @@
   content: " ";
   width: 15px;
   height: 15px;
-  background-color: #d9e1e8;
+  background-color: #fff;
   position: absolute;
-  top: 15%;
-  left: -2%;
+  top: -6px;
+  left: 45%;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   z-index: -1;
 }
 
 .user .user_modal.active {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-
-@media screen and (max-width: 720px) {
-  .user .user_modal {
-    top: 50px;
-    left: 0;
-    border: 2px solid #6986A5;
-  }
-  .user .user_modal::after {
-    display: none;
-  }
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 /*# sourceMappingURL=User.css.map */

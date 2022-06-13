@@ -20,6 +20,7 @@ aside {
   -webkit-transition: .4s ease;
   transition: .4s ease;
   z-index: 900;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 720px) {
