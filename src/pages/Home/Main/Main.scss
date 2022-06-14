@@ -1,0 +1,15 @@
+main {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+    z-index: 1;
+    width: 100%;
+}
+
+@media screen and (max-width: 720px) {
+    main {
+        position: absolute;
+        top: 100px;
+        left: 0;
+    }
+}
