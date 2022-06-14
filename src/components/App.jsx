@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Header from '../pages/Header/Header'
-import Aside from '../pages/Aside/Aside'
-import MainHeader from '../pages/MainHeader/MainHeader'
-import Main from '../pages/Main/Main'
+import Header from '../pages/Home/Header/Header'
+import Aside from '../pages/Home/Aside/Aside'
+import MainHeader from '../pages/Home/MainHeader/MainHeader'
+import Main from '../pages/Home/Main/Main'
 import Uploading from './Uploading/Uploading'
+// 
+import Login from '../pages/Login/Login'
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <>
             <Routes>
                 <Route path='/' element={<Home />} exact />
+                <Route path='/login' element={<Login />} exact />
             </Routes>
         </>
     )

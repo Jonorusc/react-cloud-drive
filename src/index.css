@@ -28,3 +28,23 @@ body {
     position: relative;
     color: #0B0C0F;
 }
+
+.btn-primary {
+    background-color: #6986A5;
+    border: none;
+    border-radius: 5px;
+    height: 54px;
+    width: 100%;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+}
+
+.btn-primary:active {
+    background-color: #6986A590;
+}
