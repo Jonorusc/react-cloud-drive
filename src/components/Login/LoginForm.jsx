@@ -11,17 +11,16 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-const loginInfo = {
-    email: '',
-    passowrd: '',
-}
-
 function LoginForm() {
     const dispatch = useDispatch(),
     navigate = useNavigate(),
+    loginInfo = {
+        email: '',
+        password: '',
+    },
     [login, setLogin] = useState(loginInfo),
     { email, password } = login,
-    handleLogin = e => {
+    handleLogin = (e) => {
         const { name, value } = e.target 
         setLogin({...login, [name] : value})
     },
@@ -37,10 +36,12 @@ function LoginForm() {
     loginSubmit = async () => {
         try {
             setLoading(true)
+            console.log(password)
             const { data } = await axios.post(
-                `${process.env.BACKEND_URL}/login`,
-                { email, password,}
+                `http://localhost:8000/login`,
+                {email, password}
             )
+            
             dispatch({type: 'LOGIN', payload: data})
             Cookies.set('user', JSON.stringify(data))
             navigate('/')
@@ -85,8 +86,8 @@ function LoginForm() {
                             forgot password?
                         </Link>
                         <button type="submit" className="btn-primary">
-                            <DotLoader color="#6986A5" loading={loading} size={30} />
-                            Log In
+                            <DotLoader color="#fff" loading={loading} size={30} />
+                            {!loading && <span>Log In</span>}
                         </button>
                     </Form>
                 )}

@@ -56,7 +56,7 @@ function RegisterForm({ setVisible }) {
         try {
             setLoading(true)
             const { data } = await axios.post(
-                `${process.env.BACKEND_URL}/register`,{
+                `http://localhost:8000/register`,{
                     first_name,
                     last_name,
                     email,
@@ -137,8 +137,8 @@ function RegisterForm({ setVisible }) {
                                 errorPosition = { !mobile ? "right" : "bottom" }
                             />
                             <button type="submit" className='btn-primary'>
-                                <DotLoader color="#6986A5" loading={loading} size={30} />
-                                register
+                                <DotLoader color="#fff" loading={loading} size={30} />
+                                {!loading && <span>register</span>}
                             </button>
                         </Form>
                     )}
