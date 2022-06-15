@@ -4,6 +4,26 @@
     overflow: hidden;
 }
 
+.error {
+    margin-top: 1rem;
+    .err {
+        background-color: #E56A6A;
+        padding: 0.5rem 1rem;
+        font-weight: 300;
+        color: white;
+        display: block;
+        border-radius: 5px;
+    }
+    .success {
+        background-color: #40d140;
+        padding: 0.5rem 1rem;
+        font-weight: 300;
+        color: white;
+        display: block;
+        border-radius: 5px;
+    }
+}
+
 .input_error {
     position: absolute;
     background-color: #E56A6A;

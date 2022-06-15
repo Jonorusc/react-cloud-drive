@@ -3,10 +3,18 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import { Formik, Form } from 'formik'
 import * as Yup from "yup"
 import RegisterInput from './RegisterInput'
-import { useMediaQuery } from "react-responsive"
+import { useMediaQuery } from 'react-responsive'
+import axios from 'axios'
+import DotLoader from 'react-spinners/DotLoader'
+import Cookies from 'js-cookie'
+// redux
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function RegisterForm({ setVisible }) {
-    const userInfo = {
+    const dispatch = useDispatch(),
+    navigate = useNavigate(),
+    userInfo = {
         first_name: '',
         last_name: '',
         email: '',
@@ -23,6 +31,7 @@ function RegisterForm({ setVisible }) {
         const { name, value } = e.target
         setUser({ ...user, [name]: value })
     },
+    // use yup to validate the inputs
     validateRegister = Yup.object({
         first_name: Yup.string()
             .required('your first name is necessary!')
@@ -40,8 +49,34 @@ function RegisterForm({ setVisible }) {
             .min(6, "Password must be atleast 6 characters.")
             .max(36, "Password can't be more than 36 characters"),
     }),
+    [error, setError] = useState(''),
+    [success, setSuccess] = useState(''),
+    [loading, setLoading] = useState(''),
     registerSubimit = async () => {
-        console.log('register submit')
+        try {
+            setLoading(true)
+            const { data } = await axios.post(
+                `${process.env.BACKEND_URL}/register`,{
+                    first_name,
+                    last_name,
+                    email,
+                    password
+                }
+            )
+            setError('')
+            setSuccess(data.message)
+            // storing the data in cookies for us to use in redux, even after the page refresh
+            const { message, ...rest } = data
+            setTimeout(() => {
+                dispatch({ type: 'LOGIN', payload: rest})
+                Cookies.set('user', JSON.stringify(rest))
+                navigate("/");
+            }, 2000);
+        } catch(err) {
+            setLoading(false)
+            setSuccess('')
+            setError(err.response.data.message)
+        }
     },
     mobile = useMediaQuery({
         query: "(max-width: 820px)",
@@ -102,11 +137,16 @@ function RegisterForm({ setVisible }) {
                                 errorPosition = { !mobile ? "right" : "bottom" }
                             />
                             <button type="submit" className='btn-primary'>
+                                <DotLoader color="#6986A5" loading={loading} size={30} />
                                 register
                             </button>
                         </Form>
                     )}
                 </Formik>
+                <div className="error">
+                    {error && <span className="err">{error}</span>}
+                    {success && <span className="success">{success}</span>}
+                </div>
             </div>
         </div>
     )
