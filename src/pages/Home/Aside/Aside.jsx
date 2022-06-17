@@ -6,14 +6,21 @@ import User from './User'
 import AsideOption from './AsideOption'
 import Storage from './Storage'
 
+// redux
+import { useSelector } from 'react-redux'
+
 
 import './Aside.css'
 
-function Aside({ hideSidebar }) {
+function Aside({ hidesidebar }) {
+    const { user } = useSelector((user) => ({ ...user }))
 
     return (
-        <aside className={hideSidebar === true ? 'active' : ' '}>
-            <User name='João' />
+        <aside className={hidesidebar ? 'active' : ' '}>
+            <User 
+                name = {user?.first_name}
+                picture = {user?.picture}
+            />
             <div className="actions">
                 <AsideOption Icon={ArchiveIcon} option='My Drive' active={true}/>
                 <AsideOption Icon={DeleteRoundedIcon} option='Trash' active={false}/>
