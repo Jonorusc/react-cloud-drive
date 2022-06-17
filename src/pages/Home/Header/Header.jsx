@@ -3,6 +3,7 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import SearchIcon from '@mui/icons-material/Search'
 
 import './Header.css'
+import useClickOutside from '../../../helpers/clickOutside'
 
 function Header({ hidesidebar, setHideSdebar }) {
     const inputRef = useRef()
@@ -10,6 +11,10 @@ function Header({ hidesidebar, setHideSdebar }) {
     function showInput(){
         inputRef.current.classList.toggle('active')
     }
+
+    useClickOutside(inputRef, () => {
+        inputRef.current.classList.remove('active')
+    })
 
     return (
         <header>
