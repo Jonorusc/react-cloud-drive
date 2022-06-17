@@ -56,7 +56,7 @@ function RegisterForm({ setVisible }) {
         try {
             setLoading(true)
             const { data } = await axios.post(
-                `http://localhost:8000/register`,{
+                `${window.env.BACKEND_URL}/register`,{
                     first_name,
                     last_name,
                     email,

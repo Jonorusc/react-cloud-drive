@@ -29,16 +29,19 @@ function LoginForm() {
             .required('Email is required')
             .email('Must be a valid email')
             .max(100),
-        password: Yup.string().required('Password is required')
+        password: Yup.string()
+            .required("You must type a password")
+            .min(6, "Password must be atleast 6 characters.")
+            .max(36, "Password can't be more than 36 characters"),
     }),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(false),
     loginSubmit = async () => {
         try {
             setLoading(true)
-            console.log(password)
+            console.log(window.env.BACKEND_URL)
             const { data } = await axios.post(
-                `http://localhost:8000/login`,
+                `${window.env.BACKEND_URL}/login`,
                 {email, password}
             )
             
