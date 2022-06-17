@@ -5,10 +5,10 @@ import AsideOption from '../Aside/AsideOption'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 
-import userProfile from '../../../images/WhatsApp Image 2022-04-27 at 13.26.56.jpeg'
+// import userProfile from '../../../images/WhatsApp Image 2022-04-27 at 13.26.56.jpeg'
 import './User.css'
 
-function User( {name} ) {
+function User({ name, picture }) {
     const [modal, openModal] = useState(false)
 
     function handleModal() {
@@ -28,7 +28,7 @@ function User( {name} ) {
         <div className='user' onClick={() => {handleModal()}}>
             <Avatar sx={{
                 width: 40, height: 40}} 
-                src={userProfile}
+                src={picture}
             />
             <span className="user_name">{name}</span>
             <ArrowDropDownIcon sx={{transform: modal ? 'rotate(180deg)' : ''}}/>
