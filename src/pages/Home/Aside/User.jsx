@@ -4,10 +4,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import AsideOption from '../Aside/AsideOption'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
-
-// import userProfile from '../../../images/WhatsApp Image 2022-04-27 at 13.26.56.jpeg'
-import './User.css'
 import useClickOutside from '../../../helpers/clickOutside'
+
+import './User.css'
 
 function User({ name, picture }) {
     const [modal, openModal] = useState(false),
