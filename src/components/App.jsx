@@ -7,20 +7,18 @@ import Main from '../pages/Home/Main/Main'
 import Uploading from './Uploading/Uploading'
 // 
 import Login from '../pages/Login/Login'
+import LoggedRoutes from '../routes/LoggedRoutes'
+import FreeRoutes from '../routes/FreeRoutes'
 
 
 function App() {
     const [hidesidebar, setHideSdebar] = useState(false)
 
-    function hideSidebar(action = false) {
-        setHideSdebar(action)
-    }
-
     function Home() {
         return (
             <>
-                <Header hideAside={hideSidebar} />
-                <Aside hideSidebar={hidesidebar} />
+                <Header hidesidebar={hidesidebar} setHideSdebar={setHideSdebar} />
+                <Aside hidesidebar={hidesidebar} />
                 <MainHeader />
                 <Main />
                 <Uploading visible={true}/>
@@ -31,8 +29,14 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<Home />} exact />
-                <Route path='/login' element={<Login />} exact />
+                {/* FREE ROUTES */}
+                <Route element={<FreeRoutes/>}>
+                    <Route path='/login' element={<Login />} exact />
+                </Route>
+                {/* LOGGED ROUTES */}
+                <Route element={<LoggedRoutes/>}>
+                    <Route path='/' element={<Home />} exact />
+                </Route>
             </Routes>
         </>
     )

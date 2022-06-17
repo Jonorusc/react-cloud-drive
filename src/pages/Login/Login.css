@@ -4,6 +4,28 @@
   overflow: hidden;
 }
 
+.error {
+  margin-top: 1rem;
+}
+
+.error .err {
+  background-color: #E56A6A;
+  padding: 0.5rem 1rem;
+  font-weight: 300;
+  color: white;
+  display: block;
+  border-radius: 5px;
+}
+
+.error .success {
+  background-color: #40d140;
+  padding: 0.5rem 1rem;
+  font-weight: 300;
+  color: white;
+  display: block;
+  border-radius: 5px;
+}
+
 .input_error {
   position: absolute;
   background-color: #E56A6A;
@@ -13,6 +35,8 @@
   top: -60px;
   width: 100%;
   z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .input_error::after {
@@ -34,6 +58,8 @@
   top: 60px;
   width: 100%;
   z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .input_error_bottom::after {
@@ -54,8 +80,9 @@
   color: white;
   top: 10px;
   right: -100%;
-  max-width: 240px;
   z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .input_error_right::after {
@@ -70,7 +97,7 @@
 }
 
 .input_error_right.desktop_error {
-  width: 300px;
+  width: 275px;
 }
 
 .input_error_left {
@@ -81,8 +108,9 @@
   color: white;
   top: 10px;
   left: -100%;
-  max-width: 240px;
   z-index: 99;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .input_error_left::after {
@@ -97,7 +125,7 @@
 }
 
 .input_error_left.desktop_error {
-  width: 300px;
+  width: 275px;
 }
 
 .login_page {
@@ -117,8 +145,9 @@
 
 .login_page .login_ilustration {
   display: block;
-  width: 500px;
-  height: 500px;
+  margin-top: -6rem;
+  width: 300px;
+  height: 300px;
 }
 
 .login_page .login_ilustration img {
@@ -170,6 +199,8 @@
 .login_page .login_wrapper .login .input_wrap {
   width: 100%;
   position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .login_page .login_wrapper .login .input_wrap .login_input {
@@ -185,6 +216,8 @@
   text-indent: 10px;
   color: gray;
   font-weight: 400;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .login_page .login_wrapper .login .input_wrap .login_input:focus {
@@ -195,6 +228,7 @@
 .login_page .login_wrapper .login .input_wrap .login_input.error {
   -webkit-box-shadow: 0px 4px 4px #E56A6A90;
           box-shadow: 0px 4px 4px #E56A6A90;
+  margin-top: 0;
 }
 
 .login_page .login_wrapper .login .forgot_password {
@@ -305,6 +339,8 @@
 .register_page .register .register_form .input_wrap {
   width: 100%;
   position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .register_page .register .register_form .input_wrap .register_input {
@@ -330,6 +366,7 @@
 .register_page .register .register_form .input_wrap .register_input.error {
   -webkit-box-shadow: 0px 4px 4px #E56A6A90;
           box-shadow: 0px 4px 4px #E56A6A90;
+  margin-top: 0;
 }
 
 @media (max-width: 820px) {
@@ -392,6 +429,8 @@
   .login_page .login_wrapper .login .input_wrap {
     width: 100%;
     position: relative;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   .login_page .login_wrapper .login .input_wrap .login_input {
     width: 100%;
@@ -504,6 +543,8 @@
   .register_page .register .register_form .input_wrap {
     width: 100%;
     position: relative;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
   .register_page .register .register_form .input_wrap .register_input {
     width: 100%;

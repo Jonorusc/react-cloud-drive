@@ -1,23 +1,20 @@
 import React, { useRef } from 'react'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import SearchIcon from '@mui/icons-material/Search'
-// import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 
 import './Header.css'
+import useClickOutside from '../../../helpers/clickOutside'
 
-function Header({ hideAside }) {
-    const inputRef = useRef(),
-        toggle = useRef()
+function Header({ hidesidebar, setHideSdebar }) {
+    const inputRef = useRef()
 
     function showInput(){
         inputRef.current.classList.toggle('active')
     }
 
-    function toogleSidebar() {
-        toggle.current.classList.toggle('active')
-        
-        !toggle.current.classList.contains('active') ? hideAside(false) : hideAside(true)
-    }
+    useClickOutside(inputRef, () => {
+        inputRef.current.classList.remove('active')
+    })
 
     return (
         <header>
@@ -36,10 +33,7 @@ function Header({ hideAside }) {
                         placeholder='search for all' 
                         className="header_input" 
                     />
-                    {/* <MenuRoundedIcon className='header_menu'
-                        onClick={hideSidebar}
-                    />  */}
-                    <div ref={toggle} className="header_menu" onClick={toogleSidebar}>
+                    <div className={`header_menu ${hidesidebar ? 'active' : ''}`} onClick={() => {setHideSdebar(hidesidebar => !hidesidebar)}}>
                         <div className="line one"></div>
                         <div className="line two"></div>
                         <div className="line three"></div>

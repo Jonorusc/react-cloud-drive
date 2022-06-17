@@ -19,10 +19,10 @@ function LoginInput({ placeholder, errorPosition, ...props }) {
                 </div>
             )}
             <input 
-                className={ meta.error ? 'login_input error' : 'login_input' }
-                type={field.type}
-                name={field.name}
-                placeholder={placeholder}
+                className = { meta.error ? 'login_input error' : 'login_input' }
+                type = {field.type}
+                name = {field.name}
+                placeholder = {placeholder}
                 {...field}
                 {...props}
             />

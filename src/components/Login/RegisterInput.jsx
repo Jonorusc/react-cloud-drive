@@ -20,9 +20,9 @@ function RegisterInput({ placeholder, errorPosition, ...props }) {
             )}
             <input 
                 className={ meta.error ? 'register_input error' : 'register_input' }
-                type={field.type}
-                name={field.name}
-                placeholder={placeholder}
+                type = {field.type}
+                name = {field.name}
+                placeholder = {placeholder}
                 {...field}
                 {...props}
             />
