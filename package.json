@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.0",
     "axios": "^0.27.2",
+    "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
     "js-cookie": "^3.0.1",
     "react": "^18.1.0",
@@ -28,8 +29,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
-    "build": "react-dotenv && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,8 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "react-dotenv": {
-    "whitelist": ["BACKEND_URL"]
   }
 }
