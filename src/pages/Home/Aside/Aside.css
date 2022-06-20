@@ -17,8 +17,8 @@ aside {
           flex-direction: column;
   row-gap: 2rem;
   padding-top: 80px;
-  -webkit-transition: .4s ease;
-  transition: .4s ease;
+  -webkit-transition: all .4s;
+  transition: all .4s;
   z-index: 900;
   overflow: hidden;
 }
