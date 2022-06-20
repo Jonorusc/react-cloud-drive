@@ -1,0 +1,52 @@
+.activate {
+    position: fixed;
+    background-color: #eee;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    .activate_logo {
+        display: flex;
+        align-items: center;
+        color: #6986A5;
+        column-gap: 0.2rem;
+        margin-bottom: 1rem;
+        .logo_icon {
+            font-size: 30px;
+        }
+        .text {
+            font-size: 24px;
+            font-weight: bolder;
+        }
+    }
+    .activate_ilustration {
+        width: 184px;
+        height: 219px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .activate_text {
+        color: #6986A5;
+        font-size: 20px;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 0.5rem;
+        &.error {
+            color: #f13131;
+        }
+        span {
+            display: block;
+        }
+        span:first-of-type {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+    }
+}
+

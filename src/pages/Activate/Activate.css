@@ -1,0 +1,74 @@
+.activate {
+  position: fixed;
+  background-color: #eee;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 3rem;
+}
+
+.activate .activate_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #6986A5;
+  -webkit-column-gap: 0.2rem;
+          column-gap: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.activate .activate_logo .logo_icon {
+  font-size: 30px;
+}
+
+.activate .activate_logo .text {
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.activate .activate_ilustration {
+  width: 184px;
+  height: 219px;
+}
+
+.activate .activate_ilustration img {
+  width: 100%;
+  height: 100%;
+}
+
+.activate .activate_text {
+  color: #6986A5;
+  font-size: 20px;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.activate .activate_text.error {
+  color: #f13131;
+}
+
+.activate .activate_text span {
+  display: block;
+}
+
+.activate .activate_text span:first-of-type {
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+/*# sourceMappingURL=Activate.css.map */
