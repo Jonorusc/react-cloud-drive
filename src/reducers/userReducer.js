@@ -5,8 +5,10 @@ export function userReducer(
     action
 ) {
     switch(action.type) {
-        case 'LOGIN' :
+        case 'LOGIN':
             return action.payload
+        case 'ACTIVATION':
+            return { ...state, verified: action.payload}
         default:
             return state
     }

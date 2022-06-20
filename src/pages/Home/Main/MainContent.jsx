@@ -8,11 +8,13 @@ import pdf from '../../../images/pdf.svg'
 
 import './MainContent.css'
 
-const breadcrumb = <span className='main_breadcrumb'>
-        <a href="mydrive">My Drive</a> &gt; 
+const breadcrumb = (
+    <span className='main_breadcrumb'>
+        <a href="/">My Drive</a> &gt; 
         <a href="photos">Photos</a> &gt; 
         document.txt
-</span> 
+    </span> 
+)
 
 function ContentItem({ img, title, active }) {
     return (

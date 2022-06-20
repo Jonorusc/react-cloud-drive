@@ -46,5 +46,7 @@
 .user .user_modal.active {
   -webkit-transform: translateY(0);
           transform: translateY(0);
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
 }
 /*# sourceMappingURL=User.css.map */

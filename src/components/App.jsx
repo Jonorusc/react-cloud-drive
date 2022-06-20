@@ -4,6 +4,7 @@ import Header from '../pages/Home/Header/Header'
 import Aside from '../pages/Home/Aside/Aside'
 import MainHeader from '../pages/Home/MainHeader/MainHeader'
 import Main from '../pages/Home/Main/Main'
+import Activate from '../pages/Activate/Activate'
 import Uploading from './Uploading/Uploading'
 // 
 import Login from '../pages/Login/Login'
@@ -21,7 +22,7 @@ function App() {
                 <Aside hidesidebar={hidesidebar} />
                 <MainHeader />
                 <Main />
-                <Uploading visible={true}/>
+                <Uploading visible={false}/>
             </>
         )
     }
@@ -36,6 +37,8 @@ function App() {
                 {/* LOGGED ROUTES */}
                 <Route element={<LoggedRoutes/>}>
                     <Route path='/' element={<Home />} exact />
+                    {/* <Route path='/me' element={<Profile />} exact /> */}
+                    <Route path='/activate/:token' element={<Activate />} exact />
                 </Route>
             </Routes>
         </>

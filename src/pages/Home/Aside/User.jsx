@@ -24,16 +24,19 @@ function User({ name, picture }) {
         return (
             <div 
                 className={modal ? "user_modal active" : "user_modal"} 
-                ref={modalRef}
             >
-                <AsideOption Icon={AccountCircleRoundedIcon} option='My Profile' active={false}/>
+                <AsideOption Icon={AccountCircleRoundedIcon} option='My Profile' active={false} to="/profile"/>
                 <AsideOption Icon={LogoutRoundedIcon} option='Log-out' active={false}/>
             </div>
         )
     }
 
     return (
-        <div className='user' onClick={() => {handleModal()}}>
+        <div 
+            className='user' 
+            onClick={() => {handleModal()}}
+            ref={modalRef}
+        >
             <Avatar sx={{
                 width: 40, height: 40}} 
                 src={picture}
