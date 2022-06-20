@@ -33,18 +33,19 @@
     }
     .user_modal.active {
         transform: translateY(0);
+        transition: 500ms ease;
     }
 }
 
-@media screen and (max-width: 720px) {
-    .user {
-        // .user_modal {
-        //     top: 50px;
-        //     left: 0;
-        //     border: 2px solid #6986A5;
-        //     &::after{
-        //         display: none;
-        //     }
-        // }
-    }
-}
+// @media screen and (max-width: 720px) {
+//     .user {
+//         // .user_modal {
+//         //     top: 50px;
+//         //     left: 0;
+//         //     border: 2px solid #6986A5;
+//         //     &::after{
+//         //         display: none;
+//         //     }
+//         // }
+//     }
+// }
