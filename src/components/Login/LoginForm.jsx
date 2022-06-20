@@ -39,9 +39,8 @@ function LoginForm() {
     loginSubmit = async () => {
         try {
             setLoading(true)
-            console.log(window.env.BACKEND_URL)
             const { data } = await axios.post(
-                `${window.env.BACKEND_URL}/login`,
+                'http://localhost:8000/login',
                 {email, password}
             )
             
