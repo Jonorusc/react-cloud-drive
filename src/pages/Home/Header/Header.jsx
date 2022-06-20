@@ -33,7 +33,7 @@ function Header({ hidesidebar, setHideSdebar }) {
                         placeholder='search for all' 
                         className="header_input" 
                     />
-                    <div className={`header_menu ${hidesidebar ? 'active' : ''}`} onClick={() => {setHideSdebar(hidesidebar => !hidesidebar)}}>
+                    <div className={hidesidebar ? 'header_menu active' : 'header_menu'} onClick={() => {setHideSdebar(hidesidebar => !hidesidebar)}}>
                         <div className="line one"></div>
                         <div className="line two"></div>
                         <div className="line three"></div>
