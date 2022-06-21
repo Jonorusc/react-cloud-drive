@@ -23,7 +23,7 @@ function Activate() {
     useEffect(() => {
         const activateAccount = async () => {
             setLoading(true)
-            const { data } =  await axios.post(`http://localhost:8000/activate`, 
+            const { data } =  await axios.post('http://localhost:8000/activate', 
             { token: token.token }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
@@ -43,9 +43,9 @@ function Activate() {
             setLoading(false)
 
             if(err.response.data.message === 'jwt expired'){
-                setError('Token expirado!')
+                setError('Token Expired!')
             } else if(err.response.data.message === 'jwt malformed') {
-                setError('Token inválido!')
+                setError('Invalid Token!')
             } else {
                 setError(err.response.data.message)
             }
