@@ -386,7 +386,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 3rem;
+  padding-top: 2rem;
+  overflow: auto;
 }
 
 .registered .registered_logo {

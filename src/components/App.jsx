@@ -6,11 +6,11 @@ import MainHeader from '../pages/Home/MainHeader/MainHeader'
 import Main from '../pages/Home/Main/Main'
 import Activate from '../pages/Activate/Activate'
 import Uploading from './Uploading/Uploading'
-// 
 import Login from '../pages/Login/Login'
 import LoggedRoutes from '../routes/LoggedRoutes'
 import FreeRoutes from '../routes/FreeRoutes'
-
+import Profile from '../pages/Profile/Profile'
+import Forgot from '../pages/Forgot/Forgot'
 
 function App() {
     const [hidesidebar, setHideSdebar] = useState(false)
@@ -30,16 +30,15 @@ function App() {
     return (
         <>
             <Routes>
-                {/* FREE ROUTES */}
                 <Route element={<FreeRoutes/>}>
                     <Route path='/login' element={<Login />} exact />
                 </Route>
-                {/* LOGGED ROUTES */}
                 <Route element={<LoggedRoutes/>}>
                     <Route path='/' element={<Home />} exact />
-                    {/* <Route path='/me' element={<Profile />} exact /> */}
+                    <Route path='/profile' element={<Profile />} exact />
                     <Route path='/activate/:token' element={<Activate />} exact />
                 </Route>
+                <Route path='/forgot' element={<Forgot />} exact />
             </Routes>
         </>
     )
