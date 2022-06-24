@@ -1,0 +1,670 @@
+.profile {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.profile .header {
+  background-color: #6986A5;
+  width: 100%;
+  height: 60px;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 30px;
+  color: white;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.profile .header .header_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 0.1rem;
+          column-gap: 0.1rem;
+  cursor: pointer;
+}
+
+.profile .header .header_logo .text {
+  font-weight: 600;
+}
+
+.profile .header a {
+  color: #f2f2f2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+}
+
+.profile .header a:hover {
+  color: #fff;
+}
+
+.profile .profile_main {
+  margin-top: 60px;
+  width: 100%;
+  height: calc(100vh - 60px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #eee;
+}
+
+.profile .profile_main .user_info {
+  overflow-y: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 1rem 2rem 5rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile .profile_main .user_info::-webkit-scrollbar {
+  display: none;
+}
+
+.profile .profile_main .user_info .adjust_desktop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.profile .profile_main .user_info .avatar {
+  width: 150px;
+  height: 150px;
+}
+
+.profile .profile_main .user_info .user_brief {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 18px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+}
+
+.profile .profile_main .user_info .user_brief .input {
+  width: 315px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30px;
+}
+
+.profile .profile_main .user_info .user_brief .input input {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 90%;
+  border: none;
+  outline: none;
+  height: 1.9rem;
+  text-indent: 10px;
+  color: #0B0C0F;
+  font-size: 18px;
+}
+
+.profile .profile_main .user_info .user_brief .input input:focus {
+  border: 1px solid #6986A5;
+  padding: 0;
+}
+
+.profile .profile_main .user_info .user_brief .input .input_icon {
+  cursor: pointer;
+  height: 100%;
+  width: 15%;
+  color: #fff;
+  font-size: 14px !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #6986A5;
+}
+
+.profile .profile_main .user_info .user_brief .input .input_icon:active {
+  background-color: #6986A590;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.profile .profile_main .user_info .user_info_accordion {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 480px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .user_title {
+  font-size: 16px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item {
+  margin-bottom: 1rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  background-color: #6986A5;
+  border-radius: 10px;
+  height: 35px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 0.5rem;
+  color: white;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header.active {
+  border-radius: unset;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header .accordion_header_icon {
+  cursor: pointer;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header .accordion_header_icon.active {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 1rem;
+  background: #F2F2F2;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+  font-weight: bold;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_text {
+  font-size: 14px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input {
+  height: 1.9rem;
+  width: 70%;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input input {
+  font-size: 14px;
+  text-indent: 10px;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input input:focus {
+  padding: 0;
+  background-color: #f2f2f2;
+  border: 2px solid #6986A5;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body_button {
+  margin-top: 13px;
+  border: none;
+  background-color: #6986A5;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body_button:active {
+  background-color: #6986A590;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.profile .profile_main .notifications {
+  overflow-y: auto;
+  -webkit-box-flex: 0.5;
+      -ms-flex: 0.5;
+          flex: 0.5;
+  padding: 2rem 5rem 2rem 1rem;
+}
+
+.profile .profile_main .notifications .notifications_body {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #6986A5;
+}
+
+.profile .profile_main .notifications .notifications_body .body .body_item {
+  margin-bottom: 1rem;
+}
+
+.profile .profile_main .notifications .notifications_body .body .body_item .body_button {
+  text-decoration: none;
+  border: none;
+  outline: none;
+  background-color: #6986A5;
+  padding: 0.3rem 0.5rem;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.profile .profile_main .notifications .notifications_body .body .body_item .body_button:active {
+  background-color: #6986A590;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+@media screen and (max-width: 1024px) {
+  .profile .profile_main {
+    -webkit-column-gap: unset;
+            column-gap: unset;
+  }
+  .profile .profile_main .user_info {
+    overflow-y: auto;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-flex: 0.5;
+        -ms-flex: 0.5;
+            flex: 0.5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .profile .profile_main .user_info .avatar {
+    width: 100px;
+    height: 100px;
+  }
+  .profile .profile_main .user_info .user_brief {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 10px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    width: 100%;
+  }
+  .profile .profile_main .user_info .user_brief .input {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 35px;
+  }
+  .profile .profile_main .user_info .user_info_accordion {
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .profile .header {
+    background-color: #6986A5;
+    width: 100%;
+    height: 60px;
+    color: black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: 15px;
+    color: white;
+    -webkit-column-gap: 1rem;
+            column-gap: 1rem;
+  }
+  .profile .profile_main {
+    margin-top: 60px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow-y: auto;
+    -webkit-column-gap: unset;
+            column-gap: unset;
+  }
+  .profile .profile_main .user_info {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    overflow: unset;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 1rem;
+  }
+  .profile .profile_main .user_info .adjust_desktop {
+    display: unset;
+  }
+  .profile .profile_main .user_info .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+  .profile .profile_main .user_info .user_brief {
+    margin: 0 auto;
+    margin-top: 1rem;
+    width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 0.5rem;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .profile .profile_main .user_info .user_brief .input {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .profile .profile_main .user_info .user_brief .input input {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 90%;
+    border: none;
+    outline: none;
+    height: 1.9rem;
+    text-indent: 10px;
+    color: #0B0C0F;
+    font-size: 18px;
+  }
+  .profile .profile_main .user_info .user_brief .input input:focus {
+    border: 3.7px solid #6986A5;
+    padding: 0;
+  }
+  .profile .profile_main .user_info .user_brief .input .input_icon {
+    cursor: pointer;
+    height: 100%;
+    width: 12%;
+    color: #fff;
+    font-size: 14px !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #6986A5;
+  }
+  .profile .profile_main .user_info .user_brief .input .input_icon:active {
+    background-color: #6986A590;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .profile .profile_main .user_info .user_info_accordion {
+    margin-top: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: unset;
+  }
+  .profile .profile_main .user_info .user_info_accordion .user_title {
+    font-size: 16px;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item {
+    margin-bottom: 1rem;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    background-color: #6986A5;
+    border-radius: 10px;
+    height: 35px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 0.5rem;
+    color: white;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header.active {
+    border-radius: unset;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header .accordion_header_icon {
+    cursor: pointer;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_header .accordion_header_icon.active {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body {
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 1rem;
+    background: #F2F2F2;
+    -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-column-gap: 0.5rem;
+            column-gap: 0.5rem;
+    font-weight: bold;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_text {
+    font-size: 14px;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input {
+    height: 1.9rem;
+    width: 70%;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input input {
+    font-size: 14px;
+    text-indent: 10px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body .body_item .body_input input:focus {
+    padding: 0;
+    background-color: #f2f2f2;
+    border: 2px solid #6986A5;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body_button {
+    margin-top: 13px;
+    border: none;
+    background-color: #6986A5;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  .profile .profile_main .user_info .user_info_accordion .accordion .accordion_item .accordion_body .body_button:active {
+    background-color: #6986A590;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  .profile .profile_main .notifications {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    height: 100vh;
+    overflow-y: unset;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+}
+/*# sourceMappingURL=Profile.css.map */

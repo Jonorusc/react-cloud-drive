@@ -1,0 +1,478 @@
+.profile {
+    box-sizing: border-box;
+    .header {
+        background-color: #6986A5;
+        width: 100%;
+        height: 60px;
+        color: black;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+        color: white;
+        column-gap: 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        .header_logo {
+            display: flex;
+            align-items: center;
+            column-gap: 0.1rem;
+            cursor: pointer;
+            .text {
+                font-weight: 600;
+            }
+        }
+        a {
+            color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+    .profile_main {
+        margin-top: 60px;
+        width: 100%;
+        height: calc(100vh - 60px);
+        display: flex;
+        background-color: #eee;
+        .user_info {
+            overflow-y: auto;
+            box-sizing: border-box;
+            flex: 0.5;
+            display: flex;
+            padding: 2rem 1rem 2rem 5rem;
+            flex-direction: column;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            .adjust_desktop {
+                display: flex;
+                align-items: center;
+                column-gap: 1rem;
+            }
+            .avatar {
+                width: 150px;
+                height: 150px;
+            }
+            .user_brief {
+                display: flex;
+                flex-direction: column;
+                row-gap: 18px;
+                box-sizing: border-box;
+                width: 100%;
+                
+                .input {
+                    width: 315px;
+                    box-sizing: border-box;
+                    background-color: #fff;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    height: 30px;
+                    input {
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                        width: 90%;
+                        border: none;
+                        outline: none;
+                        height: 1.9rem;
+                        text-indent: 10px;
+                        color: #0B0C0F;
+                        font-size: 18px;
+                        &:focus{
+                            border: 1px solid #6986A5;
+                            padding: 0;
+                        }
+                    }
+                    .input_icon {
+                        cursor: pointer;
+                        height: 100%;
+                        width: 15%;
+                        color: #fff;
+                        font-size: 14px !important;
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        background-color: #6986A5;
+                        &:active {
+                            background-color: #6986A590;
+                            transform: scale(1.1);
+                        }
+                    }
+                    
+                }
+            }
+            .user_info_accordion {
+                margin-top: 2rem;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                width: 480px;
+                .user_title {
+                    font-size: 16px;
+                }
+                .accordion {
+                    margin-top: 2rem;
+                    width: 100%;
+                    .accordion_item {
+                        margin-bottom: 1rem;
+                        box-sizing: border-box;
+                        .accordion_header {
+                            cursor: pointer;
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                            background-color: #6986A5;
+                            border-radius: 10px;
+                            height: 35px;
+                            align-items: center;
+                            box-sizing: border-box;
+                            padding: 0 0.5rem;
+                            color: white;
+                            &.active {
+                                border-radius: unset;
+                                border-top-right-radius: 10px;
+                                border-top-left-radius: 10px;
+                            }
+                            .accordion_header_icon {
+                                cursor: pointer;
+                                &.active {
+                                    transform: rotate(180deg);
+                                }
+                            }
+                        }
+                        .accordion_body {
+                            display: grid;
+                            place-items: center;
+                            box-sizing: border-box;
+                            padding: 1rem;
+                            background: #F2F2F2;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            border-bottom-left-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            .body {
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                flex-direction: column;
+                                .body_item {
+                                    margin-bottom: 0.5rem;
+                                    width: 100%;
+                                    display: flex;
+                                    column-gap: 0.5rem;
+                                    font-weight: bold;
+                                    align-items: center;
+                                    justify-content: center;
+                                    .body_text {
+                                        font-size: 14px;
+                                        // background-color: blue;
+                                    }
+                                    .body_input {
+                                        height: 1.9rem;
+                                        width: 70%;
+                                        input {
+                                            font-size: 14px;
+                                            text-indent: 10px;
+                                            width: 100%;
+                                            height: 100%;
+                                            outline: none;
+                                            border: none;
+                                            border-radius: 10px;
+                                            &:focus {
+                                                padding: 0;
+                                                background-color: #f2f2f2;
+                                                border: 2px solid #6986A5;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .body_button {
+                                margin-top: 13px;
+                                border: none;
+                                background-color: #6986A5;
+                                padding: 0.6rem 1.2rem;
+                                border-radius: 10px;
+                                cursor: pointer;
+                                color: white;
+                                &:active {
+                                    background-color: #6986A590;
+                                    transform: scale(1.1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .notifications {
+            overflow-y: auto;
+            flex: 0.5;
+            padding: 2rem 5rem 2rem 1rem;
+            .notifications_body {
+                background-color: white;
+                border-radius: 10px;
+                padding: 1rem;
+                color: #6986A5;
+                .body {
+                    .body_item {
+                        margin-bottom: 1rem;
+                        .body_button {
+                            text-decoration: none;
+                            border: none;
+                            outline: none;
+                            background-color: #6986A5;
+                            padding: 0.3rem 0.5rem;
+                            border-radius: 10px;
+                            color: white;
+                            cursor: pointer;
+                            &:active {
+                                background-color: #6986A590;
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile {
+        .profile_main {
+            column-gap: unset;
+            .user_info {
+                overflow-y: auto;
+                box-sizing: border-box;
+                flex: 0.5;
+                display: flex;
+                padding: 2rem;
+                flex-direction: column;
+                .avatar {
+                    width: 100px;
+                    height: 100px;
+                }
+                .user_brief {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 10px;
+                    box-sizing: border-box;
+                    width: 100%;
+                    .input {
+                        width: 100%;
+                        box-sizing: border-box;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        height: 35px;
+                    }
+                }
+                .user_info_accordion {
+                    width: unset;
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 720px) {
+    .profile {
+        .header {
+            background-color: #6986A5;
+            width: 100%;
+            height: 60px;
+            color: black;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            color: white;
+            column-gap: 1rem;
+        }
+        .profile_main {
+            margin-top: 60px;
+            width: 100%;
+            height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            column-gap: unset;
+            .user_info {
+                flex: unset;
+                overflow: unset;
+                height: 100vh;
+                display: flex;
+                padding: 1rem;
+                flex-direction: column;
+                row-gap: 1rem;
+                .adjust_desktop {
+                    display: unset;
+                }
+                .avatar {
+                    width: 100px;
+                    height: 100px;
+                    margin: 0 auto;
+                }
+                .user_brief {
+                    margin: 0 auto;
+                    margin-top: 1rem;
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 0.5rem;
+                    box-sizing: border-box;
+                    .input {
+                        box-sizing: border-box;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        input {
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                            width: 90%;
+                            border: none;
+                            outline: none;
+                            height: 1.9rem;
+                            text-indent: 10px;
+                            color: #0B0C0F;
+                            font-size: 18px;
+                            &:focus{
+                                border: 3.7px solid #6986A5;
+                                padding: 0;
+                            }
+                        }
+                        .input_icon {
+                            cursor: pointer;
+                            height: 100%;
+                            width: 12%;
+                            color: #fff;
+                            font-size: 14px !important;
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                            background-color: #6986A5;
+                            &:active {
+                                background-color: #6986A590;
+                                transform: scale(1.1);
+                            }
+                        }
+                        
+                    }
+                }
+                .user_info_accordion {
+                    margin-top: 2rem;
+                    display: flex;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    width: unset;
+                    .user_title {
+                        font-size: 16px;
+                    }
+                    .accordion {
+                        margin-top: 2rem;
+                        width: 100%;
+                        .accordion_item {
+                            margin-bottom: 1rem;
+                            box-sizing: border-box;
+                            .accordion_header {
+                                cursor: pointer;
+                                display: flex;
+                                justify-content: space-between;
+                                width: 100%;
+                                background-color: #6986A5;
+                                border-radius: 10px;
+                                height: 35px;
+                                align-items: center;
+                                box-sizing: border-box;
+                                padding: 0 0.5rem;
+                                color: white;
+                                &.active {
+                                    border-radius: unset;
+                                    border-top-right-radius: 10px;
+                                    border-top-left-radius: 10px;
+                                }
+                                .accordion_header_icon {
+                                    cursor: pointer;
+                                    &.active {
+                                        transform: rotate(180deg);
+                                    }
+                                }
+                            }
+                            .accordion_body {
+                                display: grid;
+                                place-items: center;
+                                box-sizing: border-box;
+                                padding: 1rem;
+                                background: #F2F2F2;
+                                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                                border-bottom-left-radius: 10px;
+                                border-bottom-right-radius: 10px;
+                                .body {
+                                    width: 100%;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
+                                    .body_item {
+                                        margin-bottom: 0.5rem;
+                                        width: 100%;
+                                        display: flex;
+                                        column-gap: 0.5rem;
+                                        font-weight: bold;
+                                        align-items: center;
+                                        justify-content: center;
+                                        .body_text {
+                                            font-size: 14px;
+                                            // background-color: blue;
+                                        }
+                                        .body_input {
+                                            height: 1.9rem;
+                                            width: 70%;
+                                            input {
+                                                font-size: 14px;
+                                                text-indent: 10px;
+                                                width: 100%;
+                                                height: 100%;
+                                                outline: none;
+                                                border: none;
+                                                border-radius: 10px;
+                                                &:focus {
+                                                    padding: 0;
+                                                    background-color: #f2f2f2;
+                                                    border: 2px solid #6986A5;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .body_button {
+                                    margin-top: 13px;
+                                    border: none;
+                                    background-color: #6986A5;
+                                    padding: 0.6rem 1.2rem;
+                                    border-radius: 10px;
+                                    cursor: pointer;
+                                    color: white;
+                                    &:active {
+                                        background-color: #6986A590;
+                                        transform: scale(1.1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .notifications {
+                flex: unset;
+                height: 100vh;
+                overflow-y: unset;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+        }
+    }
+}
