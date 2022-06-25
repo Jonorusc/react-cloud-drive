@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from '../pages/Home/Header/Header'
 import Aside from '../pages/Home/Aside/Aside'
-import MainHeader from '../pages/Home/MainHeader/MainHeader'
-import Main from '../pages/Home/Main/Main'
 import Activate from '../pages/Activate/Activate'
 import Uploading from './Uploading/Uploading'
 import Login from '../pages/Login/Login'
@@ -20,8 +18,7 @@ function App() {
             <>
                 <Header hidesidebar={hidesidebar} setHideSdebar={setHideSdebar} />
                 <Aside hidesidebar={hidesidebar} />
-                <MainHeader />
-                <Main />
+                
                 <Uploading visible={false}/>
             </>
         )
