@@ -18,7 +18,6 @@ function App() {
             <>
                 <Header hidesidebar={hidesidebar} setHideSdebar={setHideSdebar} />
                 <Aside hidesidebar={hidesidebar} />
-                
                 <Uploading visible={false}/>
             </>
         )
