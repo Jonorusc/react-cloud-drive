@@ -6,7 +6,7 @@
 .profile .header {
   background-color: #6986A5;
   width: 100%;
-  height: 60px;
+  height: 50px;
   color: black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,7 +55,7 @@
 }
 
 .profile .profile_main {
-  margin-top: 60px;
+  margin-top: 50px;
   width: 100%;
   height: calc(100vh - 60px);
   display: -webkit-box;
