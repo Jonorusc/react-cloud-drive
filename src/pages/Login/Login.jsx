@@ -21,13 +21,13 @@ function Login() {
                     <LoginForm />
                 </div>
                 <div className="register">
-                    <strong><h4 className='register_text'>do not you have an account?</h4></strong>
+                    <strong><h4 className='register_text'>haven't you an account?</h4></strong>
                     <button 
                         className='btn-primary' 
                         type="submit"
                         onClick={() => {setVisible(true)}}
                     >
-                        Register
+                        Sign-up
                     </button>
                 </div>
             </div>
