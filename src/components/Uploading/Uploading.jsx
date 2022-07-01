@@ -1,28 +1,21 @@
 import React from 'react'
-import PauseCircleRoundedIcon from '@mui/icons-material/PauseCircleRounded'
-import PlayCircleRoundedIcon from '@mui/icons-material/PlayCircleRounded'
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 
 import './Uploading.css'
 
-function Uploading({ visible }) {
+function Uploading({ title, remaining, percent }) {
   return (
-    <div className={visible ? 'uploading visible' : 'uploading'}>
+    <div className="uploading visible">
         <div className="left_side">
-            <span className="title">my_father.png</span>
+            <span className="title">{title}</span>
             <div className="uploading_progress">
                 <div className="uploading_progress_bar"
-                    style={{width: '20%'}}
-                ></div>
+                    style={{width: `${percent}%'`}}
+                >{percent}%</div>
             </div>
         </div>
         <div className="right_side">
-            <small><span className="remaining_time">remaining time 30sec</span></small>
-            <div className='uploading_icons'>
-                <CancelRoundedIcon className="uploading_icon" />
-                <PauseCircleRoundedIcon className="uploading_icon" />
-                <PlayCircleRoundedIcon className="uploading_icon" />
-            </div>
+            <small><span className="remaining_time">{remaining}</span></small>
+            
         </div>
     </div>
   )
