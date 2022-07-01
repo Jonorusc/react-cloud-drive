@@ -92,3 +92,11 @@ header {
         }
     }
 }
+
+@media screen and (max-width: 412px) {
+    header {
+        nav {
+            padding: 0 10px 0 10px;
+        }
+    }
+}

@@ -18,11 +18,11 @@ function RegisterForm({ setVisible }) {
 
     // constants
     const userInfo = {
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-    },
+            first_name: '',
+            last_name: '',
+            email: '',
+            password: '',
+        },
         [user, setUser] = useState(userInfo),
         {
             first_name,
@@ -142,7 +142,7 @@ function RegisterForm({ setVisible }) {
                             />
                             <button type="submit" className='btn-primary'>
                                 <DotLoader color="#fff" loading={loading} size={30} />
-                                {!loading && <span>register</span>}
+                                {!loading && <span>sign-up</span>}
                             </button>
                         </Form>
                     )}

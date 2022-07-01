@@ -1,7 +1,6 @@
 import React from 'react'
 import ArchiveIcon from '@mui/icons-material/Archive'
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
-
+import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded'
 import User from './User'
 import AsideOption from './AsideOption'
 import Storage from './Storage'
@@ -25,7 +24,7 @@ function Aside({ hidesidebar }) {
                     to="/"
                 />
                 <AsideOption
-                    Icon={DeleteRoundedIcon}
+                    Icon={RestoreFromTrashRoundedIcon}
                     option="Trash"
                     active={false}
                     to="/trash"

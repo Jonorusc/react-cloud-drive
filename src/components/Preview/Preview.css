@@ -1,0 +1,108 @@
+#preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+#preview .preview_image {
+    max-width: 100%;
+    background-color: #f2f2f2;
+    height: 400px;
+    padding: 0.2rem;
+    display: flex;
+    box-sizing: border-box;
+}
+
+#preview .preview_image img {
+    height: 100%;
+    object-fit: contain;
+}
+
+#preview .preview_image video {
+    height: 100%;
+    object-fit: contain;
+}
+
+#preview .preview_showall {
+    height: 500px;
+    max-width: 100%;
+    margin-left: 230px;
+    width: 900px;
+    background-color: #f2f2f299;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+#preview .preview_showall h2{
+    margin-left: 3.7rem;
+}
+
+#preview .preview_showall .wrapper{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+}
+
+#preview .preview_showall .wrapper .preview_image_item {
+    width: 250px;
+    height: 300px;
+    border: 1px solid white;
+}
+
+#preview .preview_showall .wrapper .preview_image_item img,
+#preview .preview_showall .wrapper .preview_image_item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#preview .preview_showall .archives {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+}
+
+#preview .preview_showall .archives .archive {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#preview .preview_showall .archives .archive img {
+    width: 100px;
+    height: 100px;
+}
+
+#preview .preview_showall .archives .archive span {
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 1024px){
+    #preview .preview_showall {
+        height: 450px;
+        max-width: 100%;
+        margin-left: 230px;
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 720px){
+    #preview .preview_showall {
+        height: 450px;
+        width: 100%;
+        margin-left: unset;
+    }
+}

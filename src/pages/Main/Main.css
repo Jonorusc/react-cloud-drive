@@ -1,0 +1,477 @@
+main {
+  margin-top: 50px;
+  margin-left: 230px;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+main .main_options {
+  position: fixed;
+  top: 50px;
+  left: 230px;
+  width: 100%;
+  height: 30px;
+  border-bottom: 0.3px solid #6986A5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .main_options .main_options_menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .main_options .main_options_menu .menu_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  height: 100%;
+  padding: 0 0.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  background-color: #f2f2f2;
+  padding: 0.5rem;
+  min-width: 250px;
+  max-width: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item input {
+  outline: 0;
+  border: 0;
+  height: 100%;
+  font-size: 16px;
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item .dropdown_item_icon {
+  font-size: 20px;
+  margin-right: 0.4rem;
+  color: #6986A5;
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item:hover {
+  border-radius: 5px;
+  background-color: #6986A540;
+}
+
+main .main_options .main_options_menu .menu_item .item_icon {
+  font-size: 20px;
+}
+
+main .main_options .main_options_menu .menu_item:hover {
+  background-color: #f2f2f2;
+}
+
+main .main_options .main_options_menu .menu_item:active {
+  background-color: #f2f2f290;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+main .main_options .new_options {
+  position: fixed;
+  top: 50;
+  left: 0;
+  background-color: #f2f2f290;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+main .main_options .new_options .options {
+  width: calc(100% - 70%);
+  background-color: white;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: -100px;
+}
+
+main .main_options .new_options .options .options_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 0.3rem;
+}
+
+main .main_options .new_options .options .options_header .text {
+  font-size: 20px;
+}
+
+main .main_options .new_options .options .options_header .close {
+  background-color: #f2f2f290;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6986A590;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+main .main_options .new_options .options .options_header .close:active {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+main .main_options .new_options .options .options_body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main .main_options .new_options .options .options_body .body_grid {
+  display: -ms-grid;
+  display: grid;
+  padding: 0.3rem;
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  gap: 0.1rem;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview {
+  width: 100%;
+  height: 120px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview:hover {
+  -webkit-filter: grayscale(0.4);
+          filter: grayscale(0.4);
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview video {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-position: top center;
+     object-position: top center;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview .video_play,
+main .main_options .new_options .options .options_body .body_grid .preview .doc_name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #f2f2f2;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview .doc_name {
+  font-size: 11px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+main .main_options .new_options .options .options_body .body_grid .remaining {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: 20px;
+  background-color: white;
+  cursor: pointer;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+main .main_options .new_options .options .options_body .body_grid .remaining:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  background-color: #f2f2f299;
+}
+
+main .main_options .new_options .options .options_body .body_grid .remaining .ammount {
+  background-color: #f2f2f290;
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  color: #6986A590;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+main .main_options .new_options .options .options_body .body_grid .upload_more {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+main .main_options .new_options .options .options_body .body_grid .upload_more:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  background-color: #f2f2f2;
+}
+
+main .main_options .new_options .options .options_body .body_grid .upload_more .more_icon {
+  background-color: #f2f2f290;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6986A590;
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.4rem;
+}
+
+main .main_options .new_options .options .options_body .body_grid .upload_more .more_icon:active {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+main .main_options .new_options .options .options_body .body_grid .upload_more:active {
+  background-color: #f2f2f290;
+}
+
+main .main_options .new_options .options .options_body .body_file.active {
+  background-color: #f2f2f2;
+}
+
+main .main_options .new_options .options .options_body .body_file {
+  padding: 0.5rem;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid #f2f2f2;
+  width: 100%;
+  height: 200px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+main .main_options .new_options .options .options_body .body_file .body_file_input {
+  visibility: hidden;
+}
+
+main .main_options .new_options .options .options_body .body_file h4, main .main_options .new_options .options .options_body .body_file h5 {
+  margin: 0;
+}
+
+main .main_options .new_options .options .options_body .body_file:hover {
+  background-color: #f2f2f260;
+}
+
+main .main_options .new_options .options .options_body .body_file:active {
+  background-color: #f2f2f280;
+}
+
+main .main_options .new_options .options .options_body .wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .main_options .new_options .options .options_body .options_body_icon {
+  width: 70px;
+  height: 70px;
+}
+
+main .main_options .new_options .options .options_body .options_body_input {
+  width: 100%;
+  height: 40px;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+main .main_options .new_options .options .options_body .options_body_input:focus {
+  border: 2px solid #f2f2f2;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+
+main .main_options .new_options .options .options_body .options_body_button {
+  padding: 0.5rem 1rem;
+  background-color: #f2f2f2;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 18px;
+  margin: 0 auto;
+  cursor: pointer;
+  color: #6986A5;
+  margin-top: 0.5rem;
+}
+
+main .main_options .new_options .options .options_body .options_body_button:active {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+@media screen and (max-width: 720px) {
+  main {
+    margin-left: 0;
+  }
+  main .main_options {
+    left: 0;
+  }
+  main .main_options .new_options {
+    position: fixed;
+    top: 50;
+    left: 0;
+    background-color: #f2f2f290;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+  }
+  main .main_options .new_options .options {
+    width: calc(100% - 20%);
+    background-color: white;
+    -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  main {
+    margin-left: 0;
+  }
+  main .main_options {
+    left: 0;
+  }
+  main .main_options .main_options_menu .menu_item {
+    font-size: 14px;
+    padding: 0 0.2rem;
+  }
+  main .main_options .new_options .options {
+    width: calc(100% - 20%);
+  }
+  main .main_options .new_options .options .options_body .body_grid {
+    padding: 0.3rem;
+    gap: 0.2rem;
+  }
+  main .main_options .new_options .options .options_body .body_grid .preview {
+    height: 90px;
+  }
+  main .main_options .new_options .options .options_body .wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-column-gap: 0.5rem;
+            column-gap: 0.5rem;
+  }
+  main .main_options .new_options .options .options_body .options_body_icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+/*# sourceMappingURL=Main.css.map */

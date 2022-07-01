@@ -117,4 +117,10 @@ header nav .header__search .header_input {
     display: block;
   }
 }
+
+@media screen and (max-width: 412px) {
+  header nav {
+    padding: 0 10px 0 10px;
+  }
+}
 /*# sourceMappingURL=Header.css.map */
