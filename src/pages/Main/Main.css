@@ -104,6 +104,10 @@ main .main_options .main_options_menu .menu_item:active {
           transform: scale(0.95);
 }
 
+main .main_options .new_options.active {
+  background-color: #E56A6A20;
+}
+
 main .main_options .new_options {
   position: fixed;
   top: 50;
@@ -211,12 +215,44 @@ main .main_options .new_options .options .options_body .body_grid .preview:hover
           filter: grayscale(0.4);
 }
 
+main .main_options .new_options .options .options_body .body_grid .preview:hover img, main .main_options .new_options .options .options_body .body_grid .preview:hover video {
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview:hover .excluzion_icon {
+  display: -ms-grid;
+  display: grid;
+}
+
 main .main_options .new_options .options .options_body .body_grid .preview:active {
   -webkit-transform: scale(0.99);
           transform: scale(0.99);
 }
 
-main .main_options .new_options .options .options_body .body_grid .preview img {
+main .main_options .new_options .options .options_body .body_grid .preview .excluzion_icon {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: none;
+  place-items: center;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview .excluzion_icon .icon {
+  font-size: 14px;
+  color: #E56A6A50;
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview .excluzion_icon:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+main .main_options .new_options .options .options_body .body_grid .preview img, main .main_options .new_options .options .options_body .body_grid .preview video {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
@@ -224,10 +260,6 @@ main .main_options .new_options .options .options_body .body_grid .preview img {
 }
 
 main .main_options .new_options .options .options_body .body_grid .preview video {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
   -o-object-position: top center;
      object-position: top center;
 }

@@ -1,14 +1,21 @@
 import React, { useRef } from 'react'
 import useClickOutside from '../../helpers/clickOutside'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
 import './Preview.css'
 
-function Preview({ file, setPreview }) {
+function Preview({ file, setPreview, files, setFiles }) {
     const previewRef = useRef()
 
     useClickOutside(previewRef, () => {
         setPreview({})
     })
+
+    // remove files from files
+    function removeFromFiles(index) {
+        files.splice(index,1)
+        setFiles(files => [...files])
+    }
 
     return (
         <div id='preview'>
@@ -16,17 +23,31 @@ function Preview({ file, setPreview }) {
                 <>
                     <div className='preview_showall' ref={previewRef}>
                         <div className="wrapper">
-                            {file?.files.map((files, i) => {
-                                if(files?.file?.type.includes('video')) {
+                            {files.map((item, i) => {
+                                if(item?.file?.type.includes('video')) {
                                     return (
                                         <div className='preview_image_item' key={i}>
-                                            <video src={URL.createObjectURL(files?.file)} muted controls></video>
+                                            <video src={URL.createObjectURL(item?.file?? item.file)} muted controls></video>
+                                            <div className="excluzion_icon"
+                                                onClick={() => {
+                                                    removeFromFiles(i)
+                                                }}
+                                            >
+                                                <CloseRoundedIcon className="icon"/>
+                                            </div>
                                         </div>
                                     )
-                                } else if (files?.file?.type.includes('image')) {
+                                } else if (item?.file?.type.includes('image')) {
                                     return (
                                         <div className='preview_image_item' key={i}>
-                                            <img src={files.preview} alt={`item${i}`} />
+                                            <img src={item?.preview} alt={`item${i}`} />
+                                            <div className="excluzion_icon"
+                                                onClick={() => {
+                                                    removeFromFiles(i)
+                                                }}
+                                            >
+                                                <CloseRoundedIcon className="icon"/>
+                                            </div>
                                         </div>
                                     )
                                 }
@@ -35,17 +56,24 @@ function Preview({ file, setPreview }) {
                         </div>
                         <h2>Archives</h2>
                         <div className="archives">
-                            {file?.files.map((files, i) => {
-                                if(!files?.file?.type.includes('video') && !files?.file?.type.includes('image')) {
+                            {files.map((item, i) => {
+                                if(!item?.file?.type.includes('video') && !item?.file?.type.includes('image')) {
                                     let title
-                                    if(files.file.name.length > 46)
-                                        title = `${files.file.name.substr(0, 40)}...${files.file.type.substr(files.file.type.lastIndexOf('/')).replace('/', '.')}`
+                                    if(item.file.name.length > 46)
+                                        title = `${item?.file?.name.substr(0, 40)}...${item?.file?.type.substr(item?.file?.type.lastIndexOf('/')).replace('/', '.')}`
                                     else 
-                                        title = files.file.name
+                                        title = item?.file?.name
                                     return (
                                         <div className='archive' key={i}>
-                                            <img src={files.preview} alt={`item${i}`} />
+                                            <img src={item?.preview} alt={`item${i}`} />
                                             <span className="title">{title}</span>
+                                            <div className="excluzion_icon"
+                                                onClick={() => {
+                                                    removeFromFiles(i)
+                                                }}
+                                            >
+                                                <CloseRoundedIcon className="icon"/>
+                                            </div>
                                         </div>
                                     )
                                 }
