@@ -9,9 +9,19 @@ import FreeRoutes from '../routes/FreeRoutes'
 import Profile from '../pages/Profile/Profile'
 import Forgot from '../pages/Forgot/Forgot'
 import Main from '../pages/Main/Main'
+import UserDrive from '../helpers/userDrive'
+import { useSelector } from "react-redux"
 
 function App() {
-    const [hidesidebar, setHideSdebar] = useState(false)
+    const { user } = useSelector((state) => ({ ...state })),
+    currentfolder = user?.username ? user?.username : '',
+    [hidesidebar, setHideSdebar] = useState(false),
+    [userDrive, setUserDrive] = useState({
+        user: user?.username,
+        currentFolder: [currentfolder],
+        isActive: [], 
+        currentFile: '',
+    })
 
     function Home() {
         return (
@@ -24,20 +34,20 @@ function App() {
     }
 
     return (
-        <>
+        <UserDrive.Provider value={{ userDrive, setUserDrive }}>
             <Routes>
                 <Route element={<FreeRoutes/>}>
                     <Route path='/login' element={<Login />} exact />
                 </Route>
                 <Route element={<LoggedRoutes/>}>
+                    <Route path='/' element={<Home />} exact />
                     <Route path='/profile' element={<Profile />} exact />
                     <Route path='/activate/:token' element={<Activate />} exact />
                 </Route>
-                <Route path='/' element={<Home />} exact />
 
                 <Route path='/forgot' element={<Forgot />} exact />
             </Routes>
-        </>
+        </UserDrive.Provider>
     )
 }
 
