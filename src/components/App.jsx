@@ -44,7 +44,6 @@ function App() {
                     <Route path='/profile' element={<Profile />} exact />
                     <Route path='/activate/:token' element={<Activate />} exact />
                 </Route>
-
                 <Route path='/forgot' element={<Forgot />} exact />
             </Routes>
         </UserDrive.Provider>
