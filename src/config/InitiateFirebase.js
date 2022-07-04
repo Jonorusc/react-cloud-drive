@@ -5,12 +5,12 @@ import { getStorage } from "firebase/storage"
 const InitiateFirebase = (which = 'realtime') => {
     const firebaseConfig = {
         apiKey: process.env.REACT_APP_APIKEY,
-        authDomain: 'cloud-drive-e1991.firebaseapp.com',
-        databaseURL: 'https://cloud-drive-e1991-default-rtdb.firebaseio.com',
-        projectId: 'cloud-drive-e1991',
-        storageBucket: 'cloud-drive-e1991.appspot.com',
-        messagingSenderId: '652680835499',
-        appId: '1:652680835499:web:80bc65e74ce48657d822ee',
+        authDomain: process.env.REACT_APP_AUTHDOMAIN,
+        databaseURL: process.env.REACT_APP_DATABASEURL,
+        projectId: process.env.REACT_APP_PROJECTID,
+        storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+        messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+        appId: process.env.REACT_APP_APPID,
     },
     app = initializeApp(firebaseConfig)
     switch(which) {
