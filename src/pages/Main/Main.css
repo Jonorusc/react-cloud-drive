@@ -116,9 +116,20 @@ main .main_options .new_options {
   width: 100%;
   height: 100%;
   z-index: 999;
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 0.5rem;
+  padding: 2rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 main .main_options .new_options .options {
@@ -130,7 +141,6 @@ main .main_options .new_options .options {
   padding: 1rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  margin-top: -100px;
 }
 
 main .main_options .new_options .options .options_header {

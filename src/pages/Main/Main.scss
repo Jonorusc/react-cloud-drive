@@ -84,8 +84,12 @@ main {
             width: 100%;
             height: 100%;
             z-index: 999;
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 0.5rem;
+            padding: 2rem;
+            box-sizing: border-box;
             .options {
                 width: calc(100% - 70%);
                 // height: calc(100% - 40%);
@@ -94,7 +98,6 @@ main {
                 border-radius: 10px;
                 padding: 1rem;
                 box-sizing: border-box;
-                margin-top: -100px;
                 .options_header {
                     display: flex;
                     align-items: center;
