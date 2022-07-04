@@ -10,8 +10,6 @@ import pdf from '../../images/pdf.svg'
 import Preview from '../Preview/Preview'
 // helpers
 import useClickOutside from '../../helpers/clickOutside'
-import remainingTime from '../../helpers/remainingTime'
-import Uploading from '../Uploading/Uploading'
 import Upload from '../Upload/Upload'
 
 function NewsOptions({ type, setView }) {
@@ -22,20 +20,17 @@ function NewsOptions({ type, setView }) {
         excluzionZone = useRef(),
         gridRef = useRef(),
         [files, setFiles] = useState([]),
-        [uploading, setUploading] = useState(false),
-        [status, setStatus] = useState({}),
         [preview, setPreview] = useState({}),
         [loading, setLoading] = useState(false),
         [upload, setUpload] = useState(false)
 
     useEffect(() => {
-        console.log(files)
+        setFiles(files)
     }, [files])
 
     useClickOutside(optionsRef, () => {
         if ((preview && preview.show) || preview.all || loading) return
         setView('')
-        setUploading({})
     })
 
     //browser files
@@ -54,29 +49,11 @@ function NewsOptions({ type, setView }) {
     // storeFiles in files
     function storeFiles($files) {
         $files.forEach((file) => {
-            let startedAt
             // filereader
             const reader = new FileReader()
-            reader.onloadstart = (e) => {
-                startedAt = Date.now()
-                setUploading(true)
-            }
-            reader.onprogress = (e) => {
-                if (e.lengthComputable) {
-                    let { remaining, percent } = remainingTime(
-                        e.loaded,
-                        e.total,
-                        startedAt
-                    )
-                    setStatus({ remaining, percent })
-                }
-            }
             reader.onload = (e) => {
                 // check if it's an image if yes then store them in preview
-                if (
-                    file.type.includes('image') ||
-                    file.type.includes('video')
-                ) {
+                if (file.type.includes('image') || file.type.includes('video')) {
                     setFiles((files) => [
                         ...files,
                         {
@@ -101,7 +78,6 @@ function NewsOptions({ type, setView }) {
                         },
                     ])
                 }
-                setUploading(false)
             }
             reader.readAsDataURL(file)
         })
@@ -187,8 +163,7 @@ function NewsOptions({ type, setView }) {
                                         setUpload(true)
                                         setLoading(true)
                                     } else {
-                                        folderInputRef.current.placeholder =
-                                            'You must type a name'
+                                        folderInputRef.current.placeholder ='You must type a name'
                                     }
                                 }}
                             >
@@ -426,12 +401,6 @@ function NewsOptions({ type, setView }) {
                     setView={setView}
                     setLoading={setLoading}
                     folderName={folderInputRef?.current?.value?? folderInputRef?.current?.value}
-                />
-            )}
-            {uploading && uploading.lenght > 0 && (
-                <Uploading
-                    remaining={status.remaining}
-                    percent={status.percent}
                 />
             )}
             {preview && preview.show && (
