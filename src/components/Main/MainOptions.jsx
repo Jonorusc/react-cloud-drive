@@ -14,7 +14,6 @@ function MainOptions() {
     const [dropdown, setDropdown] = useState(0),
         [view, setView] = useState('')
 
-
     function onClickOption(option) {
         switch (option) {
             case 'newFolder':

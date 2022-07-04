@@ -8,10 +8,20 @@
     background-color: #d9e1e8;
     padding: 0.5rem;
     border-radius: 8px;
+    box-sizing: border-box;
+    width: 400px;
+    max-width: 500px;
     &.visible {
         display: flex;
         align-items: center;
         column-gap: 1.5rem;
+    }
+    &.active {
+        position: relative;
+        transform: unset;
+        width: 400px;
+        left: 0;
+        bottom: 0;
     }
     .left_side {
         display: flex;
@@ -20,12 +30,13 @@
         row-gap: 0.3rem;
         position: relative;
         width: 300px;
+        box-sizing: border-box;
         .title {
-            font-size: 16px;
+            font-size: 11px;
         }
         .uploading_progress {
             width: 100%;
-            background-color: white;
+            background-color: #f2f2f2;
             height: 20px;
             border-radius: 4px;
             .uploading_progress_bar {
@@ -38,6 +49,7 @@
                 align-items: center;
                 justify-content: center;
                 color: #ffffff;
+                overflow: hidden;
             }
         }
         &::after {
@@ -55,6 +67,7 @@
         display: grid;
         place-items: center;
         row-gap: 0.5rem;
+        box-sizing: border-box;
         .uploading_icons {
             display: flex;
             column-gap: 0.5rem;
@@ -75,7 +88,16 @@
         &.visible {
             flex-direction: column;
         }
+        &.active {
+            position: relative;
+            transform: unset;
+            width: 300px;
+            left: 0;
+            bottom: 0;
+        }
         .left_side {
+            align-items: center;
+            padding: 0.5rem;
             &::after {
                 display: none;
             }
@@ -83,8 +105,6 @@
         .right_side {
             display: grid;
             place-items: center;
-            width: 300px;
-            height: 60px;
         }
     }
      

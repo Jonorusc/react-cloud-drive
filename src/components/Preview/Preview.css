@@ -7,6 +7,7 @@
     height: 100%;
     display: grid;
     place-items: center;
+    cursor: pointer;
 }
 
 #preview .preview_image {
@@ -26,6 +27,7 @@
 #preview .preview_image video {
     height: 100%;
     object-fit: contain;
+    cursor: not-allowed!important;
 }
 
 #preview .preview_showall {
@@ -55,8 +57,31 @@
 
 #preview .preview_showall .wrapper .preview_image_item {
     width: 250px;
+    max-width: 100%;
     height: 300px;
     border: 1px solid white;
+    position: relative;
+}
+
+#preview .preview_showall .wrapper .excluzion_icon {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    background-color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+}
+
+#preview .preview_showall .wrapper .excluzion_icon:active {
+    transform: scale(0.99);
+}
+
+#preview .preview_showall .wrapper .excluzion_icon .icon{
+    font-size: 24px;
+    color: #E56A6A80;
 }
 
 #preview .preview_showall .wrapper .preview_image_item img,
@@ -64,6 +89,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: not-allowed;
 }
 
 #preview .preview_showall .archives {
@@ -79,11 +105,30 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+#preview .preview_showall .archives .archive .excluzion_icon{
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    background-color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+}
+
+#preview .preview_showall .archives .archive .excluzion_icon .icon {
+    font-size: 24px;
+    color: #E56A6A80;
 }
 
 #preview .preview_showall .archives .archive img {
     width: 100px;
     height: 100px;
+    cursor: not-allowed;
 }
 
 #preview .preview_showall .archives .archive span {
