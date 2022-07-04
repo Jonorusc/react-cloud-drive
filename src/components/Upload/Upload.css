@@ -1,0 +1,22 @@
+.upload_wrapper {
+    position: absolute;
+    top: 0;
+    padding: 1rem;
+    right: 0;
+    width: 50%;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 720px) {
+    .upload_wrapper {
+        position: absolute;
+        width: 100%;
+        padding: 0.2rem;
+    }
+     
+}
