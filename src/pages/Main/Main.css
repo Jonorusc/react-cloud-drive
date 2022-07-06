@@ -3,7 +3,8 @@ main {
   margin-left: 230px;
   color: black;
   height: 100%;
-  width: 100%;
+  max-width: 100%;
+  width: calc(100% - 230px);
 }
 
 main .main_options {
@@ -11,11 +12,15 @@ main .main_options {
   top: 50px;
   left: 230px;
   width: 100%;
-  height: 30px;
-  border-bottom: 0.3px solid #6986A5;
+  height: 50px;
+  border-bottom: 0.3px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+  background-color: white;
+  z-index: 800;
 }
 
 main .main_options .main_options_menu {
@@ -44,11 +49,33 @@ main .main_options .main_options_menu .menu_item {
   cursor: pointer;
 }
 
+main .main_options .main_options_menu .menu_item .item_icon {
+  font-size: 20px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+main .main_options .main_options_menu .menu_item:hover .item_icon {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+main .main_options .main_options_menu .menu_item:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
 main .main_options .main_options_menu .menu_item .item_dropdown {
   position: absolute;
   top: calc(100% + 1px);
-  left: 0;
-  background-color: #f2f2f2;
+  left: 4px;
+  background-color: #00000097;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  color: white;
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 11px 15px -4px #00000090;
+          box-shadow: 0px 11px 15px -4px #00000090;
   padding: 0.5rem;
   min-width: 250px;
   max-width: 30px;
@@ -58,6 +85,17 @@ main .main_options .main_options_menu .menu_item .item_dropdown {
   border-bottom-right-radius: 10px;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+main .main_options .main_options_menu .menu_item .item_dropdown.active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item {
@@ -82,38 +120,55 @@ main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item i
 main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item .dropdown_item_icon {
   font-size: 20px;
   margin-right: 0.4rem;
-  color: #6986A5;
+  color: #fff;
 }
 
 main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item:hover {
   border-radius: 5px;
-  background-color: #6986A540;
+  background-color: #2f282897;
 }
 
-main .main_options .main_options_menu .menu_item .item_icon {
-  font-size: 20px;
+main .main_options .breadcrumbs {
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-main .main_options .main_options_menu .menu_item:hover {
-  background-color: #f2f2f2;
+main .main_options .breadcrumbs .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-main .main_options .main_options_menu .menu_item:active {
-  background-color: #f2f2f290;
-  -webkit-transform: scale(0.95);
-          transform: scale(0.95);
+main .main_options .breadcrumbs .navigation .link {
+  margin-right: 0.2rem;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-main .main_options .new_options.active {
-  background-color: #E56A6A20;
+main .main_options .breadcrumbs .navigation .link:hover {
+  color: #6986A580;
+  text-decoration: underline;
+}
+
+main .main_options .breadcrumbs .navigation .link_span {
+  font-size: 14px;
 }
 
 main .main_options .new_options {
   position: fixed;
   top: 50;
-  left: 0;
+  left: 230px;
   background-color: #f2f2f290;
-  width: 100%;
+  width: calc(100% - 230px);
   height: 100%;
   z-index: 999;
   display: -webkit-box;
@@ -130,15 +185,29 @@ main .main_options .new_options {
   padding: 2rem;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  visibility: hidden;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+main .main_options .new_options.active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  visibility: visible;
 }
 
 main .main_options .new_options .options {
-  width: calc(100% - 70%);
+  width: calc(100% - 60%);
   background-color: white;
   -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   padding: 1rem;
+  margin-top: 40px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -455,7 +524,211 @@ main .main_options .new_options .options .options_body .options_body_button:acti
           transform: scale(1.1);
 }
 
-@media screen and (max-width: 720px) {
+main .content {
+  margin-top: 100px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (140px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 140px);
+  padding: 1rem;
+  gap: 1rem;
+  position: relative;
+}
+
+main .content .loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background-color: #f2f2f240;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 720px) {
+  main .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-grid-columns: unset;
+        grid-template-columns: unset;
+  }
+}
+
+main .content .content_item {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 150px;
+  text-align: center;
+  border-radius: 7px;
+  padding: 0.2rem;
+  position: relative;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+@media (max-width: 720px) {
+  main .content .content_item {
+    width: 90%;
+    display: block;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+main .content .content_item.active {
+  background-color: #f2f2f2;
+}
+
+main .content .content_item:hover {
+  background-color: #f2f2f2;
+}
+
+main .content .content_item:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+main .content .content_item .content_preview {
+  width: 100%;
+  height: 110px;
+}
+
+main .content .content_item .content_preview img {
+  max-width: 110px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .content .content_item .content_title {
+  font-size: 14px;
+  display: block;
+  word-wrap: break-word;
+}
+
+main .content .content_item .content_item_options {
+  position: absolute;
+  top: 0.2rem;
+  right: -6rem;
+  border-radius: 7px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  z-index: 999;
+}
+
+main .content .content_item .content_item_options .blur {
+  background-color: #00000097;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 11px 15px -4px #00000090;
+          box-shadow: 0px 11px 15px -4px #00000090;
+}
+
+@media (max-width: 720px) {
+  main .content .content_item .content_item_options {
+    position: unset;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    z-index: unset;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+    background-color: unset;
+  }
+  main .content .content_item .content_item_options .blur {
+    background-color: unset;
+    -webkit-backdrop-filter: unset;
+            backdrop-filter: unset;
+    border-radius: unset;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
+main .content .content_item .content_item_options.active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+main .content .content_item .content_item_options:active {
+  -webkit-transform: unset;
+          transform: unset;
+}
+
+main .content .content_item .content_item_options .options {
+  padding: 0.4rem;
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  main .content .content_item .content_item_options .options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-column-gap: 0.2rem;
+            column-gap: 0.2rem;
+  }
+}
+
+main .content .content_item .content_item_options .options .options_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.1rem;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  main .content .content_item .content_item_options .options .options_item {
+    padding: 0.2rem;
+    color: black;
+  }
+  main .content .content_item .content_item_options .options .options_item:hover {
+    background-color: #6986A580;
+  }
+  main .content .content_item .content_item_options .options .options_item .item_icon {
+    color: #6986A5;
+  }
+}
+
+main .content .content_item .content_item_options .options .options_item:hover {
+  background-color: #2f282897;
+}
+
+main .content .content_item .content_item_options .options .options_item .item_icon {
+  color: white;
+}
+
+@media screen and (max-width: 820px) {
   main {
     margin-left: 0;
   }
@@ -469,10 +742,6 @@ main .main_options .new_options .options .options_body .options_body_button:acti
     background-color: #f2f2f290;
     width: 100%;
     height: 100%;
-    z-index: 999;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
   }
   main .main_options .new_options .options {
     width: calc(100% - 20%);
@@ -486,6 +755,7 @@ main .main_options .new_options .options .options_body .options_body_button:acti
 @media screen and (max-width: 414px) {
   main {
     margin-left: 0;
+    width: unset;
   }
   main .main_options {
     left: 0;

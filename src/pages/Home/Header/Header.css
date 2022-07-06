@@ -68,8 +68,8 @@ header nav .header__search .header_menu .line {
   height: 2px;
   background-color: white;
   margin: 5px 0;
-  -webkit-transition: 1.2s ease;
-  transition: 1.2s ease;
+  -webkit-transition: all .3s;
+  transition: all .3s;
 }
 
 header nav .header__search .header_menu.active .one {
@@ -106,6 +106,10 @@ header nav .header__search .header_input {
   }
   header nav .header__search .header_menu {
     display: block;
+  }
+  header nav .header__search .header_menu .line {
+    -webkit-transition: all 1.2s ease;
+    transition: all 1.2s ease;
   }
   header nav .header__search .header_input {
     display: none;
