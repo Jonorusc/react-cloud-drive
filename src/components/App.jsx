@@ -13,28 +13,29 @@ import UserDrive from '../helpers/userDrive'
 import { useSelector } from "react-redux"
 
 function App() {
-    const { user } = useSelector((state) => ({ ...state })),
-    currentfolder = user?.username ? user?.username : '',
-    [hidesidebar, setHideSdebar] = useState(false),
-    [userDrive, setUserDrive] = useState({
-        user: user?.username,
-        currentFolder: [currentfolder],
-        isActive: [], 
-        currentFile: '',
-    })
-
+    
     function Home() {
+        const { user } = useSelector((state) => ({ ...state })),
+        currentfolder = user?.username ? user?.username : '',
+        [hidesidebar, setHideSdebar] = useState(false),
+        [userDrive, setUserDrive] = useState({
+            user: user?.username,
+            currentFolder: [currentfolder],
+            lastFolder: '',
+            isActive: [], 
+            currentFile: '',
+        })
         return (
-            <>
+            <UserDrive.Provider value={{ userDrive, setUserDrive }}>
                 <Header hidesidebar={hidesidebar} setHideSdebar={setHideSdebar} />
                 <Aside hidesidebar={hidesidebar} />
                 <Main />
-            </>
+            </UserDrive.Provider>
         )
     }
 
     return (
-        <UserDrive.Provider value={{ userDrive, setUserDrive }}>
+        <>
             <Routes>
                 <Route element={<FreeRoutes/>}>
                     <Route path='/login' element={<Login />} exact />
@@ -46,7 +47,7 @@ function App() {
                 </Route>
                 <Route path='/forgot' element={<Forgot />} exact />
             </Routes>
-        </UserDrive.Provider>
+        </>
     )
 }
 

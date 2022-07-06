@@ -41,12 +41,11 @@ header {
                     height: 2px;
                     background-color: white;
                     margin: 5px 0;
-                    transition: 1.2s ease;
+                    transition: all .3s;
                 }
             }
             .header_menu.active {
                 .one {
-                    
                     transform: translate(-5px, 7px) rotate(-45deg);
                 }
                 .two {
@@ -78,6 +77,9 @@ header {
                 width: auto;
                 .header_menu {
                     display: block;
+                    .line {
+                        transition: all 1.2s ease;
+                    }
                 }
                 .header_input {
                     display: none;

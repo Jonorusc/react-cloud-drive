@@ -4,13 +4,11 @@ const d = document
 
 export default function useClickOutside(ref, fn) {
     useEffect(() => {
-        const listener = e => {
-            if(!ref.current || ref.current.contains(e.target)) {
-                return
-            }
+        const listener = (e) => {
+            if (!ref.current || ref.current.contains(e.target)) return
             fn()
         }
-        // listening 
+        // listening
         d.addEventListener('mousedown', listener)
         d.addEventListener('touchstart', listener)
 

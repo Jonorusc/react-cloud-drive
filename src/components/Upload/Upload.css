@@ -10,6 +10,7 @@
     align-items: flex-end;
     overflow-y: auto;
     overflow-x: hidden;
+    row-gap: 0.5rem;
 }
 
 @media screen and (max-width: 720px) {

@@ -9,29 +9,33 @@ import pdf from '../../images/pdf.svg'
 // components
 import Preview from '../Preview/Preview'
 // helpers
-import useClickOutside from '../../helpers/clickOutside'
 import Upload from '../Upload/Upload'
 
-function NewsOptions({ type, setView }) {
-    let optionsRef = useRef(),
+function NewsOptions({ type, setView, view }) {
+    const optionsRef = useRef(),
         inputRef = useRef(),
         folderInputRef = useRef(),
         bodyFileRef = useRef(),
-        excluzionZone = useRef(),
         gridRef = useRef(),
         [files, setFiles] = useState([]),
         [preview, setPreview] = useState({}),
         [loading, setLoading] = useState(false),
-        [upload, setUpload] = useState(false)
+        [upload, setUpload] = useState(false),
+        [uploadStatus, setUploadStatus] = useState('')
 
     useEffect(() => {
         setFiles(files)
     }, [files])
 
-    useClickOutside(optionsRef, () => {
-        if ((preview && preview.show) || preview.all || loading) return
-        setView('')
-    })
+    useEffect(() => {
+        if(uploadStatus === 'success') {
+            setFiles([]) 
+            setLoading(false)
+            setUpload(false)
+            folderInputRef.current.value = ''
+            setView('')
+        }
+    }, [uploadStatus, setView])
 
     //browser files
     function handleFiles(e) {
@@ -107,23 +111,7 @@ function NewsOptions({ type, setView }) {
     }
 
     return (
-        <div
-            className="new_options"
-            ref={excluzionZone}
-            // onDragOver={(e) => {
-            //     e.preventDefault()
-            //     console.log('mouse over')
-            //     excluzionZone.current.classList.add('active')
-            // }}
-            // onDragLeave={(e) => {
-            //     e.preventDefault()
-            //     console.log('mouse leave')
-            //     excluzionZone.current.classList.remove('active')
-            // }}
-            // onDrop={(e) => {
-            //     console.log('drop')
-            // }}
-        >
+        <>
             <div className="options" ref={optionsRef}>
                 <div className="options_header">
                     <span className="text">
@@ -132,7 +120,8 @@ function NewsOptions({ type, setView }) {
                     <div
                         className="close"
                         onClick={() => {
-                            !loading && setView('')
+                            if (((preview && preview.show) || preview.all || loading) && view !== '') return
+                                setView('')
                         }}
                     >
                         <CloseRoundedIcon />
@@ -160,6 +149,7 @@ function NewsOptions({ type, setView }) {
                                 className="options_body_button"
                                 onClick={() => {
                                     if (folderInputRef?.current?.value !== '') {
+                                        setUploadStatus('')
                                         setUpload(true)
                                         setLoading(true)
                                     } else {
@@ -260,16 +250,7 @@ function NewsOptions({ type, setView }) {
                                             } else {
                                                 let title
                                                 if (item.file.name.length > 46)
-                                                    title = `${item.file.name.substr(
-                                                        0,
-                                                        40
-                                                    )}...${item.file.type
-                                                        .substr(
-                                                            item.file.type.lastIndexOf(
-                                                                '/'
-                                                            )
-                                                        )
-                                                        .replace('/', '.')}`
+                                                    title = `${item.file.name.substr(0,40)}...${item.file.type.substr(item.file.type.lastIndexOf('/')).replace('/', '.')}`
                                                 else title = item.file.name
 
                                                 return (
@@ -380,6 +361,7 @@ function NewsOptions({ type, setView }) {
                                     onClick={() => {
                                         setUpload(true)
                                         setLoading(true)
+                                        setUploadStatus('')
                                     }}
                                 >
                                     Upload
@@ -401,6 +383,7 @@ function NewsOptions({ type, setView }) {
                     setView={setView}
                     setLoading={setLoading}
                     folderName={folderInputRef?.current?.value?? folderInputRef?.current?.value}
+                    setUploadStatus={setUploadStatus}
                 />
             )}
             {preview && preview.show && (
@@ -411,7 +394,7 @@ function NewsOptions({ type, setView }) {
                     setFiles={setFiles}
                 />
             )}
-        </div>
+        </>
     )
 }
 
