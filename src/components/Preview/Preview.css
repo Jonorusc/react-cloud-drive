@@ -33,7 +33,7 @@
 #preview .preview_showall {
     height: 500px;
     max-width: 100%;
-    margin-left: 230px;
+    /* margin-left: 230px; */
     width: 900px;
     background-color: #f2f2f299;
     display: flex;
