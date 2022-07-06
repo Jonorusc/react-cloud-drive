@@ -31,6 +31,11 @@ class ManageDb {
     getDownload(ref) {
         return getDownloadURL(ref)
     }
+
+    // must instantiate current folder and user in class constructor
+    read(fn = () => {}) {
+        onValue(this.getUserRef(), fn)
+    }
 }
 
 export default ManageDb
