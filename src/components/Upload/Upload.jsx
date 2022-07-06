@@ -5,11 +5,12 @@ import UserDrive from '../../helpers/userDrive'
 import ManageDb from '../../config/ManageDb'
 // helpers
 import remainingTime from '../../helpers/remainingTime'
+// import manageUpload from '../../helpers/manageUpload'
 
 import './Upload.css'
 
-function Upload({ files, folder, setView, setLoading, folderName }) {
-    const { userDrive } = useContext(UserDrive),
+function Upload({ files, folder, setView, folderName, setUploadStatus }) {
+    const { userDrive, setUserDrive } = useContext(UserDrive),
         [success, setSucess] = useState(),
         [error, setError] = useState(),
         [uploading, setUploading] = useState([]),
@@ -25,7 +26,6 @@ function Upload({ files, folder, setView, setLoading, folderName }) {
         }).catch(err => {
             setSucess('')
             setError(err.message)
-            setLoading(false)
             setUploadingStatus({})
             let temp = [...manageDownload]
             temp.splice(err.index, 1)
@@ -56,17 +56,22 @@ function Upload({ files, folder, setView, setLoading, folderName }) {
                 name: folderName.toString(),
                 type: 'folder',
                 filepath: userDrive.currentFolder.join('/'),
+                excluded: false,
             })
             .then(() => {
                 setSucess('A folder has been created successfully!')
-                setLoading(false)
+                setUploadStatus('success')
+                setUserDrive({
+                    ...userDrive,
+                    refresh: !userDrive?.refresh,
+                })
                 setTimeout(() => {
                     setView('')
                 }, 2000);
             })
             .catch((err) => {
                 setError(err)
-                setLoading(false)
+                setUploadStatus('error')
             })
     }
 
@@ -82,21 +87,26 @@ function Upload({ files, folder, setView, setLoading, folderName }) {
             contentType: resp.contentType,
             timeCreated: resp.timeCreated,
             updated: resp.updated,
-        }).then((data) => {
-            console.log(data)
+            excluded: false,
+        }).then(() => {
             setError('')
             setSucess('Files uploaded successfully')
             setUploadingStatus({})
+            setUploadStatus('success')
             let temp = [...manageDownload]
             temp.splice(resp.index, 1)
             setManageDownload(temp)
+            setUserDrive({
+                ...userDrive,
+                refresh: !userDrive?.refresh,
+            })
             setTimeout(() => {
                 setView('')
             }, 2000)
         }).catch(err => {
             setSucess('')
             setError(err)
-            setLoading(false)
+            setUploadStatus('error')
             setUploadingStatus({})
             let temp = [...manageDownload]
             temp.splice(resp.index, 1)
@@ -155,12 +165,12 @@ function Upload({ files, folder, setView, setLoading, folderName }) {
                             case 'storage/canceled':
                                 setError('User canceled the upload')
                                 setUploadingOff($uploading, i)
-                                setLoading(false)
+                                // setUploadStatus('error')
                                 reject({
                                     message: 'Canceled by user', index: i,
                                 })
                                 setTimeout(() => {
-                                    // setError('')
+                                    setError('')
                                 }, 2000)
                               break
                             case 'storage/unknown':
