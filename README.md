@@ -25,6 +25,8 @@ npm start to start the devolopment server
 
 ![image](https://user-images.githubusercontent.com/56327459/177630354-3afe06a3-2960-4ff7-8e3e-aa849d490a1f.png)
 
+![image](https://user-images.githubusercontent.com/56327459/177630641-1ade3902-1d02-4e4d-8f87-9d2ebc766c5e.png)
+
 ![image](https://user-images.githubusercontent.com/56327459/177629805-cc1393c8-d3f0-4efc-8a06-01cff5ebcfa7.png)
 
 
