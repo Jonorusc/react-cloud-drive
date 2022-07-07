@@ -36,6 +36,10 @@ class ManageDb {
     read(fn = () => {}) {
         onValue(this.getUserRef(), fn)
     }
+
+    stopReading() {
+        off(this.getUserRef())
+    }
 }
 
 export default ManageDb
