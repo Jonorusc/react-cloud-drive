@@ -1,5 +1,5 @@
 # react-cloud-drive
-here is an app created with react.js. Inspired by dropbox, it was created with the intention of saving files in the cloud
+here is an app created with react.js. Inspired by One Drive, it was created with the intention of saving files in the cloud
 
 
 
