@@ -8,14 +8,16 @@ function BreadCrumbs({ userDrive, setUserDrive}) {
             {userDrive?.currentFolder.length > 1 ? (
                 <div className="navigation" ref={navigationRef}>
                     {userDrive?.currentFolder.map((item, i) => {
-                        console.log(item, i)
                         path.push(item)
                         return (
                             <React.Fragment key={i}>
                                 <div className="link" data-path={path.join('/')}
-                                    onClick={() => {
-                                        let  newPath = navigationRef?.current?.children[i]?.dataset.path.split('/')
-                                        setUserDrive({...userDrive, currentFolder: newPath, currentFile: '',})
+                                    onClick={(e) => {
+                                        setUserDrive({
+                                            ...userDrive, 
+                                            currentFolder: e.target.dataset.path.split('/'), 
+                                            currentFile: '',
+                                        })
                                     }}
                                     >
                                     {item} 

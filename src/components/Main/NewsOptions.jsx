@@ -32,7 +32,6 @@ function NewsOptions({ type, setView, view }) {
             setFiles([]) 
             setLoading(false)
             setUpload(false)
-            folderInputRef.current.value = ''
             setView('')
         }
     }, [uploadStatus, setView])
@@ -179,113 +178,102 @@ function NewsOptions({ type, setView, view }) {
                         >
                             {files && files.length ? (
                                 <div className="body_grid" ref={gridRef}>
-                                    {files.map((item, i) => {
-                                        if (i < 7) {
-                                            if (
-                                                item.file.type.includes('image')
-                                            ) {
-                                                return (
+                                    {files.slice(0, 7).map((item, i) => {
+                                        if (item.file.type.includes('image')) {
+                                            return (
+                                                <div
+                                                    className="preview"
+                                                    key={i}
+                                                    data-index={i}
+                                                >
+                                                    <img
+                                                        src={item?.preview}
+                                                        alt={`preview_${i}`}
+                                                        onClick={() => {
+                                                            !loading &&
+                                                                showPreview(
+                                                                    i
+                                                                )
+                                                        }}
+                                                    />
                                                     <div
-                                                        className="preview"
-                                                        key={i}
-                                                        data-index={i}
+                                                        className="excluzion_icon"
+                                                        onClick={() => {
+                                                            !loading &&
+                                                                removeFromFiles(
+                                                                    i
+                                                                )
+                                                        }}
                                                     >
-                                                        <img
-                                                            src={item?.preview}
-                                                            alt={`preview_${i}`}
-                                                            onClick={() => {
-                                                                !loading &&
-                                                                    showPreview(
-                                                                        i
-                                                                    )
-                                                            }}
-                                                        />
-                                                        <div
-                                                            className="excluzion_icon"
-                                                            onClick={() => {
-                                                                !loading &&
-                                                                    removeFromFiles(
-                                                                        i
-                                                                    )
-                                                            }}
-                                                        >
-                                                            <CloseRoundedIcon className="icon" />
-                                                        </div>
+                                                        <CloseRoundedIcon className="icon" />
                                                     </div>
-                                                )
-                                            } else if (
-                                                item.file.type.includes('video')
-                                            ) {
-                                                return (
+                                                </div>
+                                            )
+                                        } else if (item.file.type.includes('video')) {
+                                            return (
+                                                <div
+                                                    className="preview"
+                                                    key={i}
+                                                    data-index={i}
+                                                >
+                                                    <video
+                                                        src={item?.preview}
+                                                        muted
+                                                        onClick={() => {
+                                                            !loading &&
+                                                                showPreview(
+                                                                    i,
+                                                                    true
+                                                                )
+                                                        }}
+                                                    ></video>
                                                     <div
-                                                        className="preview"
-                                                        key={i}
-                                                        data-index={i}
+                                                        className="excluzion_icon"
+                                                        onClick={() => {
+                                                            !loading &&
+                                                                removeFromFiles(
+                                                                    i
+                                                                )
+                                                        }}
                                                     >
-                                                        <video
-                                                            src={item?.preview}
-                                                            muted
-                                                            onClick={() => {
-                                                                !loading &&
-                                                                    showPreview(
-                                                                        i,
-                                                                        true
-                                                                    )
-                                                            }}
-                                                        ></video>
-                                                        <div
-                                                            className="excluzion_icon"
-                                                            onClick={() => {
-                                                                !loading &&
-                                                                    removeFromFiles(
-                                                                        i
-                                                                    )
-                                                            }}
-                                                        >
-                                                            <CloseRoundedIcon className="icon" />
-                                                        </div>
-                                                        <PlayCircleFilledWhiteIcon className="video_play" />
+                                                        <CloseRoundedIcon className="icon" />
                                                     </div>
-                                                )
-                                            } else {
-                                                let title
-                                                if (item.file.name.length > 46)
-                                                    title = `${item.file.name.substr(0,40)}...${item.file.type.substr(item.file.type.lastIndexOf('/')).replace('/', '.')}`
-                                                else title = item.file.name
+                                                    <PlayCircleFilledWhiteIcon className="video_play" />
+                                                </div>
+                                            )
+                                        } else {
+                                            let title
+                                            if (item.file.name.length > 46)
+                                                title = `${item.file.name.substr(0,40)}...${item.file.type.substr(item.file.type.lastIndexOf('/')).replace('/', '.')}`
+                                            else title = item.file.name
 
-                                                return (
+                                            return (
+                                                <div
+                                                    className="preview"
+                                                    key={i}
+                                                    data-index={i}
+                                                >
+                                                    <img
+                                                        src={item?.preview}
+                                                        alt={`doc_${item.file.name}_${i}`}
+                                                    />
+                                                    <span className="doc_name">
+                                                        {title}
+                                                    </span>
                                                     <div
-                                                        className="preview"
-                                                        key={i}
-                                                        data-index={i}
+                                                        className="excluzion_icon"
+                                                        onClick={() => {
+                                                            !loading &&
+                                                                removeFromFiles(
+                                                                    i
+                                                                )
+                                                        }}
                                                     >
-                                                        <img
-                                                            src={item?.preview}
-                                                            alt={`doc_${item.file.name}_${i}`}
-                                                        />
-                                                        <span className="doc_name">
-                                                            {title}
-                                                        </span>
-                                                        <div
-                                                            className="excluzion_icon"
-                                                            onClick={() => {
-                                                                !loading &&
-                                                                    removeFromFiles(
-                                                                        i
-                                                                    )
-                                                            }}
-                                                        >
-                                                            <CloseRoundedIcon className="icon" />
-                                                        </div>
+                                                        <CloseRoundedIcon className="icon" />
                                                     </div>
-                                                )
-                                            }
+                                                </div>
+                                            )
                                         }
-                                        return (
-                                            <React.Fragment
-                                                key={i}
-                                            ></React.Fragment>
-                                        )
                                     })}
                                     {files.length > 7 && (
                                         <div

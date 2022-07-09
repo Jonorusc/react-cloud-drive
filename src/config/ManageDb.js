@@ -36,6 +36,14 @@ class ManageDb {
     read(fn = () => {}) {
         onValue(this.getUserRef(), fn)
     }
+
+    stopReading() {
+        off(this.getUserRef())
+    }
+
+    updateKey(key, file = {}) {
+        update(child(this.getUserRef(), key), file)
+    }
 }
 
 export default ManageDb
