@@ -95,6 +95,9 @@ main {
             width: 100%;
             align-items: center;
             display: flex;
+            &.trash {
+                margin-left: 1rem;
+            }
             .navigation {
                 display: flex;
                 align-items: center;
@@ -377,38 +380,6 @@ main {
         min-height: calc(100vh - 200px);
         height: 100%;
         position: relative;
-        .notifications {
-            position: absolute;
-            // margin-top: 1rem;
-            bottom: 1rem;
-            right: 1rem;
-            background-color: #d9e1e8;
-            padding: 1.2rem 1.6rem;
-            box-sizing: border-box;
-            border-radius: 7px;
-            font-weight: bold;
-            transform: translateX(100000px);
-            transform-origin: right left;
-            transition: all .4s;
-            a {
-                text-decoration: none!important;
-                color: black;
-            }
-            @media (max-width: 720px) {
-                .notifications {
-                    bottom: unset;
-                    position: absolute;
-                    right: 1rem;
-                    background-color: #d9e1e8;
-                    width: 300px;
-                    z-index: 999;
-                }
-            }
-        }
-        
-        .notifications.active {
-            transform: translateX(0);
-        }
         .item_options {
             position: absolute;
             width: 100%;

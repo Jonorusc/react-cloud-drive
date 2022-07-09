@@ -138,6 +138,10 @@ main .main_options .breadcrumbs {
   display: flex;
 }
 
+main .main_options .breadcrumbs.trash {
+  margin-left: 1rem;
+}
+
 main .main_options .breadcrumbs .navigation {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -537,45 +541,6 @@ main .content {
   min-height: calc(100vh - 200px);
   height: 100%;
   position: relative;
-}
-
-main .content .notifications {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: #d9e1e8;
-  padding: 1.2rem 1.6rem;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 7px;
-  font-weight: bold;
-  -webkit-transform: translateX(100000px);
-          transform: translateX(100000px);
-  -webkit-transform-origin: right left;
-          transform-origin: right left;
-  -webkit-transition: all .4s;
-  transition: all .4s;
-}
-
-main .content .notifications a {
-  text-decoration: none !important;
-  color: black;
-}
-
-@media (max-width: 720px) {
-  main .content .notifications .notifications {
-    bottom: unset;
-    position: absolute;
-    right: 1rem;
-    background-color: #d9e1e8;
-    width: 300px;
-    z-index: 999;
-  }
-}
-
-main .content .notifications.active {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
 }
 
 main .content .item_options {

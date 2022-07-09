@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
 
-function BreadCrumbs({ userDrive, setUserDrive}) {
+function BreadCrumbs({ userDrive, setUserDrive, url}) {
     const navigationRef = useRef()
     let path = []
     return (
-        <div className="breadcrumbs">
-            {userDrive?.currentFolder.length > 1 ? (
+        <div className={url === 'trash' ? "breadcrumbs trash" : "breadcrumbs"}>
+            {userDrive?.currentFolder?.length > 1 ? (
                 <div className="navigation" ref={navigationRef}>
                     {userDrive?.currentFolder.map((item, i) => {
                         path.push(item)
