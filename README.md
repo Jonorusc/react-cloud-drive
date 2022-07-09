@@ -1,7 +1,8 @@
 # react-cloud-drive
 here is an app created with react.js. Inspired by One Drive, it was created with the intention of saving files in the cloud
 
-
+## Back End
+Do not forget to use *Cloud-Drive-Backend*: https://github.com/Jonorusc/cloud-drive-backend
 
 ## Reference
 
@@ -28,9 +29,3 @@ npm start to start the devolopment server
 ![image](https://user-images.githubusercontent.com/56327459/177630641-1ade3902-1d02-4e4d-8f87-9d2ebc766c5e.png)
 
 ![image](https://user-images.githubusercontent.com/56327459/177629805-cc1393c8-d3f0-4efc-8a06-01cff5ebcfa7.png)
-
-## Back End
-Do not forget to use *Cloud-Drive-Backend*: https://github.com/Jonorusc/cloud-drive-backend
-
-
-
