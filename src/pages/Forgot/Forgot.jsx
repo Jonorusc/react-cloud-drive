@@ -36,7 +36,7 @@ function Forgot() {
                     <AddToDriveIcon />
                     <span className="text">Cloud Drive</span>
                 </Link>
-                <Link to="/" className="btn_cancel">
+                <Link to="/mydrive" className="btn_cancel">
                     Cancel
                 </Link>
             </div>
