@@ -20,14 +20,14 @@ function Aside({ hidesidebar }) {
                 <AsideOption
                     Icon={ArchiveIcon}
                     option="My Drive"
-                    active={true}
-                    to="/"
+                    active={window.location.pathname === '/mydrive' ? true : false}
+                    to="/mydrive"
                 />
                 <AsideOption
                     Icon={RestoreFromTrashRoundedIcon}
                     option="Trash"
-                    active={false}
-                    to="/trash"
+                    active={window.location.pathname === '/mydrive/trash' ? true : false}
+                    to="/mydrive/trash"
                 />
             </div>
             <Storage ammout="130mb of 1GB" />
