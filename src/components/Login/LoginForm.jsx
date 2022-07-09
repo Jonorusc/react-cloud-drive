@@ -46,7 +46,7 @@ function LoginForm() {
             
             dispatch({type: 'LOGIN', payload: data})
             Cookies.set('user', JSON.stringify(data))
-            navigate('/')
+            navigate('/mydrive')
         } catch(err) {
             setLoading(false)
             setError(err.response.data.message)

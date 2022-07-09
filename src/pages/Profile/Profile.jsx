@@ -13,12 +13,12 @@ function Profile() {
     return (
         <div className='profile'>
             <header className="header">
-                <Link className="header_logo" to="/">
+                <Link className="header_logo" to="/mydrive">
                     <AddToDriveIcon /> 
                     <span className="text">Cloud Drive</span>
                 </Link>
                 |
-                <Link to="/">   
+                <Link to="/mydrive">   
                     <HomeRoundedIcon /> Go Home
                 </Link>
             </header>

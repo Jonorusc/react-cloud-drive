@@ -36,7 +36,7 @@ function Activate() {
                 payload: true,
             })
             setTimeout(() => {
-                window.location.href = '/'
+                window.location.href = '/mydrive'
             }, 5000)
         }
         activateAccount().catch(err => {
@@ -50,7 +50,7 @@ function Activate() {
                 setError(err.response.data.message)
             }
             setTimeout(() => {
-                window.location.href = '/'
+                window.location.href = '/mydrive'
             }, 5000)
         })
         // eslint-disable-next-line

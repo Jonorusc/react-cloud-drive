@@ -9,13 +9,16 @@ import document from '../../images/document.svg'
 import pdf from '../../images/pdf.svg'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import useClickOutside from '../../helpers/clickOutside'
-import Notification from '../Notification/Notification'
+import itemsOptions from '../../helpers/itemsOptions'
+import Notification from '../../components/Notification/Notification'
 
-function Content() {
+function Content({ url }) {
     const { userDrive, setUserDrive } = useContext(UserDrive),
         [folderListener, setFolderListener] = useState([]),
         [loading, setLoading] = useState(true),
         [itemOptions, setItemOptions] = useState({}),
+        [error, setError] = useState(''),
+        [success, setSuccess] = useState(''),
         inputOptionsRef = useRef(),
         itemActionRef = useRef(),
         downloadRef = useRef()
@@ -58,12 +61,29 @@ function Content() {
         const manageDb = new ManageDb(userDrive?.user, userDrive?.currentFolder)
         await manageDb.read((snapshot) => {
             snapshot.forEach(item => {
-                if(item.val().excluded) return
-                tempData.push({
-                    key: item.key,
-                    data: item.val()
-                })
+                // check url for content or trash
+                switch(url) {
+                    case 'content': 
+                        if(item.val().excluded) return
+                        if(!item.val().name) return
+                        tempData.push({
+                            key: item.key,
+                            data: item.val()
+                        })
+                    break
+                    case 'trash': 
+                        if(!item.val().name) return
+                        if(item.val().excluded) {
+                            tempData.push({
+                                key: item.key,
+                                data: item.val()
+                            })
+                        }
+                    break
+                    default: break
+                }
             })
+            // sort by folder first the folders then the files
             tempData.sort((a,b) => {
                 return (a.data.type && b.data.type) === 'folder' ? 1 : -1
             })
@@ -73,8 +93,14 @@ function Content() {
 
     // items options
 
-    // download and movetotrash
+    // download, restore, delete and movetotrash
     useEffect(() => {
+        const db = {
+            user: userDrive?.user, 
+            currentFolder: userDrive?.currentFolder,
+        },
+        excluded = itemOptions?.payload?.excluded,
+        keys = itemOptions?.payload?.keys
         switch(itemOptions.action) {
             case 'download': 
                 downloadRef.current.click()
@@ -84,16 +110,54 @@ function Content() {
                 setItemOptions({})
             break 
             case 'movetotrash':
-                const manageDb = new ManageDb(userDrive?.user, userDrive?.currentFolder)
-                let current = folderListener[itemOptions.payload.index]?.data
-                current.excluded = itemOptions.payload.excluded
-                manageDb.updateKey(itemOptions.payload.key, current)
-                // refresh
-                setUserDrive({
-                    ...userDrive,
-                    currentFile: ''
+            case 'restore':
+                const task = new itemsOptions(db, keys, folderListener, excluded)
+                task.restoreOrToTrash()
+                .then(resps => {
+                    resps.forEach(resp => {
+                        // refresh
+                        setUserDrive({
+                            ...userDrive,
+                            currentFile: '',
+                            currentFolder: [userDrive.user],
+                        })
+                        setSuccess('Sucessfully')
+                        setItemOptions({})
+                        setTimeout(() => {
+                            setSuccess('')
+                        }, 2000)
+                    })
+                }).catch(err => {
+                    setError('There was an error, try again later...')
+                    setTimeout(() => {
+                        setError('')
+                    }, 2000)
                 })
-                setItemOptions({})
+            break
+            case 'delete':
+                // itemOptions.payload.keys.forEach(key => {
+                //     current = folderListener.find(item => {
+                //         return (item.key === key) ? item : null
+                //     })
+                //     if(current.data.type === 'file') {
+                //         const tempFile = current.data.fullPath.split('/'),
+                //         file = new ManageDb(userDrive?.user, userDrive?.currentFolder, tempFile)
+                //         // remove file from storage
+                //         file.deleteFile().then(() => {
+                //             // remove ref from realtime database
+                //             manageDb.removeRef(key)
+                //             setSuccess('File removed successfully!')
+                //         }).catch(err => {
+                //             setError(err)
+                //         })
+                        
+                //     } else if(current.data.type === 'folder') {
+                //         // remove all content from this folder that is in storage database
+                //         // manageDb.read(snapshot => {
+
+                //         // })  
+                //     }
+                // })
             break
                 default: break
         }
@@ -157,15 +221,14 @@ function Content() {
 
                             return (
                                 <React.Fragment key={i}>
-                                    {item.data.name && (
-                                        <ContentItem 
-                                            title={title} 
-                                            preview={preview} 
-                                            item={item} index={i} 
-                                            active={userDrive?.isActive.indexOf(item.key) !== -1 ? true: false} 
-                                            setItemOptions={setItemOptions}
-                                        />
-                                    )}
+                                    <ContentItem 
+                                        title={title} 
+                                        preview={preview} 
+                                        item={item} index={i} 
+                                        active={userDrive?.isActive?.indexOf(item.key) !== -1 ? true: false} 
+                                        setItemOptions={setItemOptions}
+                                        url={url}
+                                    />
                                 </React.Fragment>
                             )
                         })}
@@ -180,7 +243,7 @@ function Content() {
                 )}
                 {itemOptions?.action === 'rename' && (
                     <div className='item_options'>
-                        {console.log(itemOptions)}
+                        <Notification title='tese' />
                         {itemOptions.action === 'rename' && (
                             <div className="item_action" ref={itemActionRef}>
                                 <div className='item_action_header'>
@@ -202,24 +265,11 @@ function Content() {
                         )}
                     </div>
                 )}
-                <div className={(itemOptions.action === 'download' || itemOptions.action === 'movetotrash') ? "notifications active" : "notifications"}
-                    ref={itemActionRef}
-                >
-                    {itemOptions.action === 'download' && (
-                        <>
-                            <a href={itemOptions.payload} download={itemOptions.name} ref={downloadRef}
-                                target='_blank' rel="noreferrer"
-                            >
-                                <Notification title="Your download has already started" />
-                            </a>
-                        </>
-                    )}
-                    {itemOptions.action === 'movetotrash' && (
-                        <>
-                            <Notification title="has been moved to trash" fileName={`${itemOptions.name}`} />
-                        </>
-                    )}
-                </div>
+                {(success || error) && (
+                    <>
+                        <Notification title={error ? error : success} />
+                    </>
+                )}
             </div>
         </>
     )

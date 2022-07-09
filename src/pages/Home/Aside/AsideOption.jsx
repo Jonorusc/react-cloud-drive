@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './AsideOption.css'
 
 function AsideOptions( {Icon, option, active, to} ) {
@@ -9,11 +8,12 @@ function AsideOptions( {Icon, option, active, to} ) {
     }
 
     return (
-        <Link className={asideClass()} to={ to ? to : '#'}>
+        <a className={asideClass()} href={to ? to : '#'}>
             {Icon && <Icon />}
             <span className="option">{option}</span>
-        </Link>
+        </a>
     )
 }
 
 export default AsideOptions
+
