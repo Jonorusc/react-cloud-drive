@@ -44,6 +44,15 @@ class ManageDb {
     updateKey(key, file = {}) {
         update(child(this.getUserRef(), key), file)
     }
+
+    // return a promise
+    deleteFile() {
+        return deleteObject(this.getStorageRef())
+    }
+
+    removeRef(key) {
+        return remove(child(this.getUserRef(), key))
+    }
 }
 
 export default ManageDb
