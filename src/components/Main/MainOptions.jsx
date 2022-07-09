@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Menu from './Menu'
 
-function MainOptions() {
+function MainOptions({ url }) {
     const [dropdown, setDropdown] = useState(0),
         [view, setView] = useState('')
 
     return (
         <div className="main_options">
-            <Menu view={view} setView={setView} dropdown={dropdown} setDropdown={setDropdown} />
+            <Menu view={view} setView={setView} dropdown={dropdown} setDropdown={setDropdown} url={url}/>
         </div>
     )
 }
