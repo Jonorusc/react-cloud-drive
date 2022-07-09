@@ -11,38 +11,40 @@ import NewsOptions from './NewsOptions'
 import UserDrive from '../../helpers/userDrive'
 import BreadCrumbs from './BreadCrumbs'
 
-function Menu({ view, setView, dropdown, setDropdown }) {
+function Menu({ view, setView, dropdown, setDropdown, url }) {
     const {userDrive, setUserDrive } = useContext(UserDrive)
 
     return (
         <>
-            <ul className="main_options_menu">
-                <li
-                    className="menu_item"
-                    onMouseEnter={() => {setDropdown(1)}}
-                    onMouseLeave={() => {setDropdown(0)}}
-                >
-                    <AddRoundedIcon className="item_icon" />
-                    <span className="item_text">Add</span>
-                    <div className={dropdown === 1 ? "item_dropdown active" : "item_dropdown"}>   
-                        <div className="dropdown_item"
-                            onClick={() => {
-                                setView('folder')
-                            }}
-                        >
-                            <CreateNewFolderRoundedIcon className="dropdown_item_icon" /> Folder
+            {url === 'content' && (
+                <ul className="main_options_menu">
+                    <li
+                        className="menu_item"
+                        onMouseEnter={() => {setDropdown(1)}}
+                        onMouseLeave={() => {setDropdown(0)}}
+                    >
+                        <AddRoundedIcon className="item_icon" />
+                        <span className="item_text">Add</span>
+                        <div className={dropdown === 1 ? "item_dropdown active" : "item_dropdown"}>   
+                            <div className="dropdown_item"
+                                onClick={() => {
+                                    setView('folder')
+                                }}
+                            >
+                                <CreateNewFolderRoundedIcon className="dropdown_item_icon" /> Folder
+                            </div>
+                            <div className="dropdown_item"
+                                onClick={() => {
+                                    setView('file')
+                                }}
+                            >
+                                <UploadFileRoundedIcon className="dropdown_item_icon" /> Files
+                            </div>
                         </div>
-                        <div className="dropdown_item"
-                            onClick={() => {
-                                setView('file')
-                            }}
-                        >
-                            <UploadFileRoundedIcon className="dropdown_item_icon" /> Files
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <BreadCrumbs userDrive={userDrive} setUserDrive={setUserDrive}/>
+                    </li>
+                </ul>
+            )}
+            <BreadCrumbs userDrive={userDrive} setUserDrive={setUserDrive} url={url}/>
             <div className={view === 'folder' ? "new_options active" : "new_options"}>
                 <NewsOptions type="folder" setView={setView} view={view} />
             </div> 
