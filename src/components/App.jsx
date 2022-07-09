@@ -42,6 +42,8 @@ function App() {
                 </Route>
                 <Route element={<LoggedRoutes/>}>
                     <Route path='/' element={<Home />} exact />
+                    <Route path='/mydrive' element={<Home />} exact />
+                    <Route path='/mydrive/:trash' element={<Home />} exact />
                     <Route path='/profile' element={<Profile />} exact />
                     <Route path='/activate/:token' element={<Activate />} exact />
                 </Route>
