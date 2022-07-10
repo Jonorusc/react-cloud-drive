@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useEffect } from 'react'
 
-function Notifications({ user }) {
+function UserNotifications({ user }) {
     const [message, setMessage] = useState(''),
     [error, setError] = useState(''),
     sendVerification = async () => {
@@ -64,4 +63,4 @@ function Notifications({ user }) {
     )
 }
 
-export default Notifications
+export default UserNotifications

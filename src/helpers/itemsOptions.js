@@ -1,15 +1,16 @@
 import ManageDb from "../config/ManageDb"
 
 class itemsOptions {
-    constructor(db, keys, folderListener, excluded) {
-        this.keys = keys
+    constructor(db, folderListener, excluded = false) {
         this.db = db
         this.excluded = excluded
         this.folderListener = folderListener
         this._data = []
+        this.restoreOrToTrash = this.restoreOrToTrash.bind(this)
     }
 
-    restoreOrToTrash(keys = this.keys) {
+    restoreOrToTrash(keys) {
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
         let current, promises = []
 
         keys.forEach(key => {
@@ -18,74 +19,183 @@ class itemsOptions {
                     return (item.key === key) ? item : null
                 })
                 let file = current.data 
-                file.excluded = this.excluded
                 // check contentType
                 if(file.type === 'folder') {
-                    this.restoreOrToTrashFolder(this.db.user, this.db.currentFolder)
-                    .then(() => {
+                    file.excluded = this.excluded
+                    manageDb.updateKey(key, file)
+                    // read and search for more files or folders
+                    let tempFolder = this.db.currentFolder
+                    tempFolder.push(file.name)
+                    this.searchForFiles(tempFolder).then(() => {
                         resolve({
                             message: 'Success',
-                            data: file
                         })
-                    }).catch(err => {
+                    }).catch(error => {
                         reject({
-                            message: err
+                            message: error
                         })
                     })
                 } else if(file.type === 'file') {
-                    const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+                    file.excluded = this.excluded
                     manageDb.updateKey(key, file)
                     resolve({
                         message: 'Success',
-                        data: file
                     })
                 }
             }))
         })
         return Promise.all(promises)
     }
-    
-    restoreOrToTrashFolder(user, folder) {
-        const manageDb = new ManageDb(user, folder)
 
+    searchForFiles(folder) {
+        const folderData = new ManageDb(this.db.user, folder)
         return new Promise((resolve, reject) => {
-            manageDb.read(snapshot => {
-                manageDb.stopReading()
-                snapshot.forEach(item => {
-                    let data = item.val(),
-                        key = item.key
+            folderData.read(snapshot => {
+                folderData.stopReading()
+                snapshot.forEach(folderFile => {
+                    let file = folderFile?.val(), 
+                        key = folderFile?.key
                     
-                    if(data.type === 'folder') {
-                        data.excluded = this.excluded
-                        manageDb.updateKey(key, data)
-                        let tempFolder = folder 
-                        tempFolder.push(data.name)
-                        this.restoreOrToTrashFolder(user, tempFolder)
-                        .then(() => {
+                    if(file.name) {
+                        file.excluded = this.excluded
+                        folderData.updateKey(key, file)
+                        if(file.type === 'folder') {
+                            let tempFolder = folder
+                            tempFolder.push(file.name)
+                            this.searchForFiles(tempFolder).then(() => {
+                                resolve({
+                                    message: 'Success',
+                                })
+                            }).catch(error => {
+                                reject({
+                                    message: error
+                                })
+                            })
+                        } else {
                             resolve({
                                 message: 'Success',
-                                data,
                             })
-                        }).catch(err => {
-                            reject({
-                                message: err
-                            })
-                        })
-                    } else if(data.type === 'file'){
-                        data.excluded = this.excluded
-                        manageDb.updateKey(key, data)
-                        resolve({
-                            message: 'Success',
-                            data,
-                        })
-                    }
+                        }
+                    } 
                 })
             })
         })
     }
+    
+    rename(newName, keys) {
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+        let promises = [], current
+        
+        keys.forEach(key => {
+            promises.push(new Promise((resolve, reject) => {
+                current = this.folderListener.find(item => {
+                    return (item.key === key) ? item : null
+                })
+                let file = current.data 
+                if(file.type === 'folder') {
+                    /* 
+                    'item.key' is a reference to the folder inside firebase
+                    i saved it for later use when renaming the folder 
+                    after renaming the folder it is necessary to rename its reference too, 
+                    otherwise it will be the same as having created a new folder
+                    */
+                    
+                    manageDb.read(snapshot => {
+                        manageDb.stopReading()
+                        snapshot.forEach(item => {
+                            // check if file.name is equal to item.key if true let's get the data and create a new reference with the new name
+                            if(item.key === file.name) {
+                                let tempFolder = this.db.currentFolder
+                                tempFolder.push(newName)
+                                Object.values(item.val()).forEach(folderFile => {
+                                    // create a item file
+                                    let itemFile = {}
+                                    if(folderFile.type === 'folder') {
+                                        itemFile = {
+                                            name: folderFile.name.toString(),
+                                            type: 'folder',
+                                            filepath: tempFolder.join('/'),
+                                            excluded: false,
+                                        }
+                                    } else if(folderFile.type === 'file') {
+                                        itemFile = {
+                                            name: folderFile.name.toString(),
+                                            type: 'file',
+                                            size: folderFile.size,
+                                            downloadURL: folderFile.downloadURL,
+                                            fullPath: folderFile.fullPath,
+                                            preview: folderFile.preview,
+                                            contentType: folderFile.contentType,
+                                            timeCreated: folderFile.timeCreated,
+                                            updated: folderFile.updated,
+                                            excluded: false,
+                                        }
+                                    }
+                                    
+                                    new ManageDb(this.db.user, tempFolder)
+                                    .setInUser(itemFile).then(() => {
+                                        resolve({
+                                            message: 'Success',
+                                            currentFolder: newName,
+                                            currentFile: '',
+                                            data: folderFile,
+                                        })
+                                    })
+                                    .catch((err) => {
+                                        reject()
+                                    })
+                                })  
+                            }
+                        })
+                        // remove old ref
+                        manageDb.removeRef(file.name)
+                    })
+                    // folder reference file 
+                    file.name = newName
+                    manageDb.updateKey(key, file)
+                } else if(file.type === 'file') {
+                    file.name = newName
+                    manageDb.updateKey(key, file)
+                    resolve({
+                        message: 'Success',
+                        currentFolder: this.db.currentFolder,
+                        currentFile: newName,
+                        data: file,
+                    })
+                }
+            }))
+        })
 
-    deleteOptions() {
+        return Promise.all(promises)
+    }
 
+    delete(keys) {
+        let promises = [], current
+        
+        keys.forEach(key => {
+            promises.push(new Promise((resolve, reject) => {
+                current = this.folderListener.find(item => {
+                    return (item.key === key) ? item : null
+                })
+                if(current.data.type === 'folder') {
+                    const tempFolder = current.data.fullPath.split('/')
+                    console.log(tempFolder)
+                } else if(current.data.type === 'file') {
+                    const tempFolder = current.data.fullPath.split('/')
+                    const file = new ManageDb(this.db.user, tempFolder, current.data.storageName)
+                    file.deleteFile().then(() => {
+                        file.removeRef(key)
+                        resolve({
+                            message: 'Success'
+                        })
+                    }).catch(err => {
+                        reject(err)
+                    })
+                }
+            }))
+        })
+
+        return Promise.all(promises)
     }
 }
 

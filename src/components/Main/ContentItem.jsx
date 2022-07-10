@@ -106,10 +106,9 @@ function ContentItem({ title, preview, item, index, active, setItemOptions, url 
                                             onClick={() => {setItemOptions({
                                                 action: 'rename',
                                                 payload: {
-                                                    key: item?.key,
-                                                    index,
+                                                    keys: activeTemp,
                                                 },
-                                                name: item?.data?.name,
+                                                name: item?.data?.name
                                             })
                                             setOnContextMenu(false)
                                         }}
