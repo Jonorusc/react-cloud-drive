@@ -6,8 +6,8 @@ function Notification({ title, fileName }) {
     let name
     fileName?.length > 15 ? name = `${fileName.substr(0,15)}...` : name = fileName
     return (
-        <div className="notifications active">
-            <div className="notification_title">
+        <div className="app_notifications active">
+            <div className="app_notification_title">
                 {name ? `${name} ${title}` : `${title}`}
             </div>
         </div>

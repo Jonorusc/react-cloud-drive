@@ -1,4 +1,4 @@
-.notifications {
+.app_notifications {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
@@ -16,13 +16,13 @@
   transition: all .4s;
 }
 
-.notifications a {
+.app_.notifications a {
   text-decoration: none !important;
   color: black;
 }
 
 @media (max-width: 720px) {
-  .notifications .notifications {
+    .app_.notifications {
     bottom: unset;
     position: absolute;
     right: 1rem;
@@ -32,8 +32,7 @@
   }
 }
 
-.notifications.active {
+.app_.notifications.active {
   -webkit-transform: translateX(0);
           transform: translateX(0);
 }
-/*# sourceMappingURL=Notifications.css.map */
