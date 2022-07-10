@@ -11,6 +11,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import useClickOutside from '../../helpers/clickOutside'
 import itemsOptions from '../../helpers/itemsOptions'
 import Notification from '../../components/Notification/Notification'
+import { saveAs } from 'file-saver'
 
 function Content({ url }) {
     const { userDrive, setUserDrive } = useContext(UserDrive),
@@ -20,8 +21,7 @@ function Content({ url }) {
         [error, setError] = useState(''),
         [success, setSuccess] = useState(''),
         inputOptionsRef = useRef(),
-        itemActionRef = useRef(),
-        downloadRef = useRef()
+        itemActionRef = useRef()
  
     useEffect(() => {
         // storing lastfolder in userdrive.lastfolder
@@ -38,14 +38,13 @@ function Content({ url }) {
     }, [])
 
     useEffect(() => {
-        console.log(userDrive)
         readFiles()
         // eslint-disable-next-line
     }, [userDrive])
 
-    useEffect(() => {
-        console.log(folderListener)
-    }, [folderListener])
+    // useEffect(() => {
+    //     console.log(folderListener)
+    // }, [folderListener])
 
     function storingLastFolder() {
         setUserDrive({
@@ -65,6 +64,7 @@ function Content({ url }) {
                 switch(url) {
                     case 'content': 
                         if(item.val().excluded) return
+                        // items used as reference in firebase
                         if(!item.val().name) return
                         tempData.push({
                             key: item.key,
@@ -101,20 +101,23 @@ function Content({ url }) {
         },
         excluded = itemOptions?.payload?.excluded,
         keys = itemOptions?.payload?.keys
+
+        let task = null
         switch(itemOptions.action) {
             case 'download': 
-                downloadRef.current.click()
-                setTimeout(() => {
-                    setItemOptions({})
-                }, 2000)
+                saveAs(
+                    itemOptions?.payload,
+                    `cloud-drive-${itemOptions.name}.jpeg`
+                )
                 setItemOptions({})
             break 
             case 'movetotrash':
             case 'restore':
-                const task = new itemsOptions(db, keys, folderListener, excluded)
-                task.restoreOrToTrash()
+                task = new itemsOptions(db, folderListener, excluded)
+                task.restoreOrToTrash(keys)
                 .then(resps => {
                     resps.forEach(resp => {
+                        console.log(resp)
                         // refresh
                         setUserDrive({
                             ...userDrive,
@@ -135,6 +138,25 @@ function Content({ url }) {
                 })
             break
             case 'delete':
+                task = new itemsOptions(db, folderListener)
+                task.delete(keys).then(() => {
+                    // refresh
+                    setUserDrive({
+                        ...userDrive,
+                        currentFile: '',
+                        currentFolder: [userDrive.user],
+                    })
+                    setSuccess('Sucessfully')
+                    setItemOptions({})
+                    setTimeout(() => {
+                        setSuccess('')
+                    }, 2000)
+                }).catch(err => {
+                    setError('There was an error, try again later...')
+                    setTimeout(() => {
+                        setError('')
+                    }, 2000)
+                })
                 // itemOptions.payload.keys.forEach(key => {
                 //     current = folderListener.find(item => {
                 //         return (item.key === key) ? item : null
@@ -166,16 +188,34 @@ function Content({ url }) {
 
     // rename
     function renameFile() {
-        const manageDb = new ManageDb(userDrive?.user, userDrive?.currentFolder)
-        let current = folderListener[itemOptions.payload.index]?.data
-        current.name = inputOptionsRef.current.value
-        manageDb.updateKey(itemOptions.payload.key, current)
-        // refresh
-        setUserDrive({
-            ...userDrive,
-            currentFile: current.name,
+        const db = {
+            user: userDrive?.user, 
+            currentFolder: userDrive?.currentFolder,
+        },
+        keys = itemOptions?.payload?.keys,
+        task = new itemsOptions(db, folderListener)
+        task.rename(inputOptionsRef.current.value, keys)
+        .then((resps) => {
+            resps.forEach(resp => {
+                // refresh
+                setUserDrive({
+                    ...userDrive,
+                    currentFolder: resp.currentFolder,
+                    currentFile: resp.currentFile,
+                })
+                setSuccess('Renamed successfully!')
+                setItemOptions({})
+                setTimeout(() => {
+                    setSuccess('')
+                }, 2000)
+            })
+        }).catch(() => {
+            setError('There was an error, try again later...')
+            setItemOptions({})
+            setTimeout(() => {
+                setError('')
+            }, 2000)
         })
-        setItemOptions({})
     }
 
     useClickOutside(itemActionRef, () => {
@@ -243,7 +283,6 @@ function Content({ url }) {
                 )}
                 {itemOptions?.action === 'rename' && (
                     <div className='item_options'>
-                        <Notification title='tese' />
                         {itemOptions.action === 'rename' && (
                             <div className="item_action" ref={itemActionRef}>
                                 <div className='item_action_header'>
