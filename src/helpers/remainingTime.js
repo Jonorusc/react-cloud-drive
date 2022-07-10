@@ -16,7 +16,7 @@ export default function remainingTime(loaded, total, startedAt) {
     else if(seconds > 0) {
         remaining = `${seconds} seconds`
     } else {
-        remaining = 'concluded'
+        remaining = 'waiting...'
     }
     return {remaining, percent}
 }
