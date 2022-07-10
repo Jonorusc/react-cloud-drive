@@ -117,7 +117,6 @@ function Content({ url }) {
                 task.restoreOrToTrash(keys)
                 .then(resps => {
                     resps.forEach(resp => {
-                        console.log(resp)
                         // refresh
                         setUserDrive({
                             ...userDrive,
