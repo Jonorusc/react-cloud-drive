@@ -2,7 +2,7 @@ import React from 'react'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import UserInfo from '../../components/Profile/UserInfo'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
-import Notifications from '../../components/Profile/Notifications'
+import UserNotifications from '../../components/Profile/UserNotifications'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -24,7 +24,7 @@ function Profile() {
             </header>
             <div className="profile_main">
                 <UserInfo user={user}/>
-                <Notifications user={user}/>
+                <UserNotifications user={user}/>
             </div>
         </div>
   )
