@@ -82,6 +82,7 @@ function Upload({ files, folder, setView, folderName, setUploadStatus }) {
             type: resp.type,
             size: resp.size,
             downloadURL: resp.downloadURL,
+            storageName: resp.name?.toString(),
             fullPath: userDrive?.currentFolder.join('/'),
             preview: resp.preview,
             contentType: resp.contentType,
