@@ -21,7 +21,6 @@ function App() {
         [userDrive, setUserDrive] = useState({
             user: user?.username,
             currentFolder: [currentfolder],
-            lastFolder: '',
             isActive: [], 
             currentFile: '',
         })
