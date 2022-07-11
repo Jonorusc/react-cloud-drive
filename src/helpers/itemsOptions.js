@@ -233,7 +233,6 @@ class itemsOptions {
                                 if(folderData.val().type === 'folder') {
                                     let tempFolder = this.db.currentFolder
                                     tempFolder.push(folderData.val().name)
-
                                     this.deleteInside(tempFolder).then(() => {
                                         manageDb.removeRef(folderData.val().name) //remove the folder ref data, like: local: key = name
                                         manageDb.removeRef(key) //remove the folder ref, like: local: folder -> key: -N.... -> name
