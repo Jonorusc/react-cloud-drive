@@ -128,6 +128,90 @@ main .main_options .main_options_menu .menu_item .item_dropdown .dropdown_item:h
   background-color: #2f282897;
 }
 
+main .main_options .breadcrumbs_folders {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 11px;
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main .main_options .breadcrumbs_folders h5 {
+  margin: 0;
+}
+
+main .main_options .breadcrumbs_folders .folders_icon {
+  margin-top: 1px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  padding: 0;
+  font-size: 16px;
+}
+
+main .main_options .breadcrumbs_folders .folders_icon.active {
+  -webkit-transform: unset;
+          transform: unset;
+}
+
+main .main_options .breadcrumbs_folders .breadcrumbs_folders_options {
+  position: absolute;
+  width: 200px;
+  left: -10px;
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  top: 50px;
+  -webkit-transition: .3s;
+  transition: .3s;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+main .main_options .breadcrumbs_folders .breadcrumbs_folders_options.active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+main .main_options .breadcrumbs_folders .breadcrumbs_folders_options .blur {
+  background-color: #00000097;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: 0.5rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .main_options .breadcrumbs_folders .breadcrumbs_folders_options .blur .breadcrumbs_folders_item {
+  color: white;
+  padding: 0.4rem;
+  border-radius: 7px;
+}
+
+main .main_options .breadcrumbs_folders .breadcrumbs_folders_options .blur .breadcrumbs_folders_item:hover {
+  background-color: #2f282897;
+}
+
 main .main_options .breadcrumbs {
   width: 100%;
   -webkit-box-align: center;
