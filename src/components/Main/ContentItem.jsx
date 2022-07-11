@@ -7,7 +7,7 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded'
 // helpers
 import useClickOutSide from '../../helpers/clickOutside'
 import UserDrive from '../../helpers/userDrive'
-import ManageDb from '../../config/ManageDb'
+// import ManageDb from '../../config/ManageDb'
 // import { useMediaQuery } from "react-responsive"
 
 function ContentItem({ title, preview, item, index, active, setItemOptions, url }) {
@@ -26,10 +26,6 @@ function ContentItem({ title, preview, item, index, active, setItemOptions, url 
 
     function onDblClick(e) {
         if(item?.data?.type === 'folder') {
-            if(userDrive?.lastFolder !== '') {
-                const manageDb = new ManageDb(userDrive?.user, [...userDrive?.lastFolder])
-                manageDb.stopReading()
-            }
             const current = userDrive?.currentFolder
             current.push(item?.data?.name?.toString())
             
@@ -39,7 +35,7 @@ function ContentItem({ title, preview, item, index, active, setItemOptions, url 
                 currentFile: '',
             })
         } else if(item?.data?.type === 'file') {
-            
+            console.log('show preview')
         }
     }
 
