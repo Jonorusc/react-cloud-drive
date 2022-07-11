@@ -8,8 +8,8 @@
           box-sizing: border-box;
   border-radius: 7px;
   font-weight: bold;
-  -webkit-transform: translateX(100000px);
-          transform: translateX(100000px);
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-transform-origin: right left;
           transform-origin: right left;
   -webkit-transition: all .4s;

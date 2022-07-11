@@ -35,7 +35,13 @@ function ContentItem({ title, preview, item, index, active, setItemOptions, url 
                 currentFile: '',
             })
         } else if(item?.data?.type === 'file') {
-            console.log('show preview')
+            setItemOptions({
+                action: 'preview',
+                payload: {
+                    file: item
+                },
+                name: item?.data?.name
+            })
         }
     }
 

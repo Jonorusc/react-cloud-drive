@@ -10,6 +10,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import useClickOutside from '../../helpers/clickOutside'
 import itemsOptions from '../../helpers/itemsOptions'
 import Notification from '../../components/Notification/Notification'
+import Preview from '../Preview/Preview'
 import { saveAs } from 'file-saver'
 
 function Content({ url }) {
@@ -19,6 +20,7 @@ function Content({ url }) {
         [itemOptions, setItemOptions] = useState({}),
         [error, setError] = useState(''),
         [success, setSuccess] = useState(''),
+        [showPreview, setPreview] = useState({}),
         inputOptionsRef = useRef(),
         itemActionRef = useRef()
     
@@ -29,7 +31,6 @@ function Content({ url }) {
         setTimeout(() => {
             setLoading(false)
         }, 2000)
-        console.log(userDrive)
         // eslint-disable-next-line
     }, [userDrive])
 
@@ -64,12 +65,14 @@ function Content({ url }) {
 
     // download, restore, delete and movetotrash
     useEffect(() => {
+        setPreview({})
         const db = {
             user: userDrive?.user, 
             currentFolder: userDrive?.currentFolder,
         },
         excluded = itemOptions?.payload?.excluded,
-        keys = itemOptions?.payload?.keys
+        keys = itemOptions?.payload?.keys,
+        file = itemOptions?.payload?.file
 
         let task = null
         switch(itemOptions.action) {
@@ -86,19 +89,18 @@ function Content({ url }) {
                 task.restoreOrToTrash(keys)
                 .then(resps => {
                     resps.forEach(resp => {
-                        console.log(resp)
                         // refresh
                         setUserDrive({
                             ...userDrive,
                             currentFile: '',
                             currentFolder: [userDrive.user],
                         })
-                        setSuccess('Sucessfully')
-                        setItemOptions({})
-                        setTimeout(() => {
-                            setSuccess('')
-                        }, 2000)
                     })
+                    setSuccess('Sucessfully')
+                    setItemOptions({})
+                    setTimeout(() => {
+                        setSuccess('')
+                    }, 2000)
                 }).catch(err => {
                     setError('There was an error, try again later...')
                     setTimeout(() => {
@@ -126,6 +128,21 @@ function Content({ url }) {
                         setError('')
                     }, 2000)
                 })
+            break
+            case 'preview':
+                if(file.data.contentType.includes('video')) {
+                    let video = file.data
+                    video.preview = file.data.downloadURL
+                    setPreview({
+                        preview: video.preview, 
+                        show: true,
+                        ObjectURL: false
+                    })
+                } else {
+                    setPreview({
+                        preview: file.data.preview, show: true, ObjectURL: true
+                    })
+                }
             break
                 default: break
         }
@@ -249,11 +266,17 @@ function Content({ url }) {
                         )}
                     </div>
                 )}
-                {(success || error) && (
+                {(success !== '' || error !== '') && (
                     <>
                         <Notification title={error ? error : success} />
                     </>
                 )}
+                {showPreview && showPreview.show && (
+                <Preview
+                    file={showPreview}
+                    setPreview={setPreview}
+                />
+            )}
             </div>
         </>
     )

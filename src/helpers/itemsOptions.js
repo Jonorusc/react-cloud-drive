@@ -166,7 +166,7 @@ class itemsOptions {
                                         }
                                     } else if(folderFile.type === 'file') {
                                         itemFile = {
-                                            name: folderFile.name.toString(),
+                                            name: `${folderFile.name.toString()}${folderFile.contentType.substr(folderFile.contentType.lastIndexOf('/')).replace('/', '.')}`,
                                             type: 'file',
                                             size: folderFile.size,
                                             downloadURL: folderFile.downloadURL,
@@ -201,7 +201,7 @@ class itemsOptions {
                     file.name = newName
                     manageDb.updateKey(key, file)
                 } else if(file.type === 'file') {
-                    file.name = newName
+                    file.name = `${newName}${file.contentType.substr(file.contentType.lastIndexOf('/')).replace('/', '.')}`
                     manageDb.updateKey(key, file)
                     resolve({
                         message: 'Success',
