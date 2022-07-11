@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from 'react'
 import ContentItem from './ContentItem'
 import UserDrive from '../../helpers/userDrive'
-import ManageDb from '../../config/ManageDb'
 import DotLoader from 'react-spinners/DotLoader'
 import folder from '../../images/folder.svg'
 import video from '../../images/video.svg'
@@ -22,75 +21,45 @@ function Content({ url }) {
         [success, setSuccess] = useState(''),
         inputOptionsRef = useRef(),
         itemActionRef = useRef()
- 
+    
     useEffect(() => {
-        // storing lastfolder in userdrive.lastfolder
-        storingLastFolder()
-
         // getting firebase data and storing in folderListener
-        // readFiles()
-
+        readFiles()
         // turn loading off
         setTimeout(() => {
             setLoading(false)
         }, 2000)
-        // eslint-disable-next-line
-    }, [])
-
-    useEffect(() => {
-        readFiles()
+        console.log(userDrive)
         // eslint-disable-next-line
     }, [userDrive])
 
-    // useEffect(() => {
-    //     console.log(folderListener)
-    // }, [folderListener])
-
-    function storingLastFolder() {
-        setUserDrive({
-            ...userDrive,
-            isActive: [],
-            currentFile: '',
-            lastFolder: userDrive?.currentFolder.join('/'),
-        })
+    async function readFiles() {
+        let task = null
+        switch(url) {
+            case 'content': 
+                task = await new itemsOptions({
+                    user: userDrive?.user, 
+                    currentFolder: userDrive?.currentFolder,
+                }).readAllowedItems()
+            break
+            case 'trash': 
+                task = await new itemsOptions({
+                    user: userDrive?.user, 
+                    currentFolder: userDrive?.currentFolder,
+                }).readTrashedItems()
+            break
+            default: break
+        }
+        sortFolders(task)
     }
 
-    async function readFiles() {
-        let tempData = []
-        const manageDb = new ManageDb(userDrive?.user, userDrive?.currentFolder)
-        await manageDb.read((snapshot) => {
-            snapshot.forEach(item => {
-                // check url for content or trash
-                switch(url) {
-                    case 'content': 
-                        if(item.val().excluded) return
-                        // items used as reference in firebase
-                        if(!item.val().name) return
-                        tempData.push({
-                            key: item.key,
-                            data: item.val()
-                        })
-                    break
-                    case 'trash': 
-                        if(!item.val().name) return
-                        if(item.val().excluded) {
-                            tempData.push({
-                                key: item.key,
-                                data: item.val()
-                            })
-                        }
-                    break
-                    default: break
-                }
-            })
-            // sort by folder first the folders then the files
-            tempData.sort((a,b) => {
+    function sortFolders(data) {
+        setFolderListener(
+            data.sort((a,b) => {
                 return (a.data.type && b.data.type) === 'folder' ? 1 : -1
             })
-            setFolderListener(tempData)
-        })
-    }
-
+        )
+    } 
     // items options
 
     // download, restore, delete and movetotrash
@@ -117,6 +86,7 @@ function Content({ url }) {
                 task.restoreOrToTrash(keys)
                 .then(resps => {
                     resps.forEach(resp => {
+                        console.log(resp)
                         // refresh
                         setUserDrive({
                             ...userDrive,
@@ -156,29 +126,6 @@ function Content({ url }) {
                         setError('')
                     }, 2000)
                 })
-                // itemOptions.payload.keys.forEach(key => {
-                //     current = folderListener.find(item => {
-                //         return (item.key === key) ? item : null
-                //     })
-                //     if(current.data.type === 'file') {
-                //         const tempFile = current.data.fullPath.split('/'),
-                //         file = new ManageDb(userDrive?.user, userDrive?.currentFolder, tempFile)
-                //         // remove file from storage
-                //         file.deleteFile().then(() => {
-                //             // remove ref from realtime database
-                //             manageDb.removeRef(key)
-                //             setSuccess('File removed successfully!')
-                //         }).catch(err => {
-                //             setError(err)
-                //         })
-                        
-                //     } else if(current.data.type === 'folder') {
-                //         // remove all content from this folder that is in storage database
-                //         // manageDb.read(snapshot => {
-
-                //         // })  
-                //     }
-                // })
             break
                 default: break
         }

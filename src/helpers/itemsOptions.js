@@ -1,12 +1,49 @@
 import ManageDb from "../config/ManageDb"
 
 class itemsOptions {
-    constructor(db, folderListener, excluded = false) {
+    constructor(db, folderListener = [], excluded = false) {
         this.db = db
         this.excluded = excluded
         this.folderListener = folderListener
         this._data = []
         this.restoreOrToTrash = this.restoreOrToTrash.bind(this)
+        this.readTrashedItems = this.readTrashedItems.bind(this)
+    }
+
+    readAllowedItems() {
+        this._data = []
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+        manageDb.read(snapshot => {
+            snapshot.forEach(item => {
+                if(!item.val().excluded && item.val().name) {
+                    this._data.push({
+                        key: item.key,
+                        data: item.val(),
+                    })
+                }
+            })
+        })
+        return this._data.sort((a,b) => {
+            return (a.data.type && b.data.type) === 'folder' ? 1 : -1
+        })
+    }
+
+    readTrashedItems() {
+        this._data = []
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+        manageDb.read(snapshot => {
+            snapshot.forEach(item => {
+                if(item?.val().name && item?.val().excluded) {
+                    this._data.push({
+                        key: item.key,
+                        data: item?.val(),
+                    })
+                }
+            })
+        })
+        return this._data.sort((a,b) => {
+            return (a.data?.type && b.data.type) === 'folder' ? 1 : -1
+        })
     }
 
     restoreOrToTrash(keys) {
@@ -19,25 +56,35 @@ class itemsOptions {
                     return (item.key === key) ? item : null
                 })
                 let file = current.data 
+                file.excluded = this.excluded
+                manageDb.updateKey(key, file)
                 // check contentType
                 if(file.type === 'folder') {
-                    file.excluded = this.excluded
-                    manageDb.updateKey(key, file)
                     // read and search for more files or folders
-                    let tempFolder = this.db.currentFolder
-                    tempFolder.push(file.name)
-                    this.searchForFiles(tempFolder).then(() => {
-                        resolve({
-                            message: 'Success',
-                        })
-                    }).catch(error => {
-                        reject({
-                            message: error
+                    manageDb.read(snapshot => {
+                        snapshot.forEach(folderData => {
+                            // in this folder have another folder inside?
+                            if(folderData.val().type === 'folder') {
+                                let tempFolder = this.db.currentFolder
+                                tempFolder.push(file.name)
+                                this.searchForFiles(tempFolder).then(() => {
+                                    resolve({
+                                        message: 'Success',
+                                    })
+                                }).catch(error => {
+                                    reject({
+                                        message: error
+                                    })
+                                })
+                                // if false return success
+                            } else {
+                                resolve({
+                                    message: 'Success',
+                                })
+                            }
                         })
                     })
                 } else if(file.type === 'file') {
-                    file.excluded = this.excluded
-                    manageDb.updateKey(key, file)
                     resolve({
                         message: 'Success',
                     })
@@ -51,10 +98,10 @@ class itemsOptions {
         const folderData = new ManageDb(this.db.user, folder)
         return new Promise((resolve, reject) => {
             folderData.read(snapshot => {
-                folderData.stopReading()
+                // folderData.stopReading()
                 snapshot.forEach(folderFile => {
-                    let file = folderFile?.val(), 
-                        key = folderFile?.key
+                    let file = folderFile.val(), 
+                        key = folderFile.key
                     
                     if(file.name) {
                         file.excluded = this.excluded
@@ -171,15 +218,34 @@ class itemsOptions {
 
     delete(keys) {
         let promises = [], current
-        
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+
         keys.forEach(key => {
             promises.push(new Promise((resolve, reject) => {
                 current = this.folderListener.find(item => {
                     return (item.key === key) ? item : null
                 })
                 if(current.data.type === 'folder') {
-                    const tempFolder = current.data.fullPath.split('/')
-                    console.log(tempFolder)
+                    // here i've to remove all content what is in this folder from the realtime database as well as in the storage
+                    manageDb.read(snapshot => {
+                        snapshot.forEach(folderData => {
+                            if(folderData.val().excluded) {
+                                if(folderData.val().type === 'folder') {
+                                    let tempFolder = this.db.currentFolder
+                                    tempFolder.push(folderData.val().name)
+
+                                    this.deleteInside(tempFolder).then(() => {
+                                        manageDb.removeRef(folderData.val().name) //remove the folder ref data, like: local: key = name
+                                        manageDb.removeRef(key) //remove the folder ref, like: local: folder -> key: -N.... -> name
+                                        resolve({ message: 'success' })
+                                    }).catch(err => {
+                                        reject(err)
+                                    })
+                                } 
+                            }
+                        })
+                    })
+                    
                 } else if(current.data.type === 'file') {
                     const tempFolder = current.data.fullPath.split('/')
                     const file = new ManageDb(this.db.user, tempFolder, current.data.storageName)
@@ -196,6 +262,38 @@ class itemsOptions {
         })
 
         return Promise.all(promises)
+    }
+
+    deleteInside(folder = []) {
+        const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
+        return new Promise((resolve, reject) => {
+            manageDb.read(snapshot => {
+                snapshot.forEach(folderData => {
+                    if(folderData.val().excluded) {
+                        if(folderData.val().type === 'folder') {
+                            let tempFolder = this.db.currentFolder
+                            tempFolder.push(folderData.val().name)
+                            this.deleteInside(tempFolder).then(() => {
+                                resolve({ message: 'success' })
+                            }).catch(err => {
+                                reject(err)
+                            })
+                        } else if(folderData.val().type === 'file') {
+                            const tempFolder = folderData.val().fullPath.split('/')
+                            const file = new ManageDb(this.db.user, tempFolder, folderData.val().storageName)
+                            file.deleteFile().then(() => {
+                                file.removeRef(folderData.key)
+                                resolve({
+                                    message: 'Success'
+                                })
+                            }).catch(err => {
+                                reject(err)
+                            })
+                        }
+                    }
+                })
+            })
+        })
     }
 }
 
