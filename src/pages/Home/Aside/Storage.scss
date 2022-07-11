@@ -7,6 +7,12 @@
         .text {
             color: #0B0C0F;
         }
+        .storage_header_icon {
+            color: #6986A5;
+            &.warning {
+                color: #E56A6A;
+            }
+        }
     }
     .storage_body {
         margin-top: 5px;
@@ -20,6 +26,9 @@
                 background-color: #6986A5;
                 border-radius: 4px;
                 height: 100%;
+                &.warning {
+                    background-color: #E56A6A;
+                }
             }
         }
         .storage_ammount {
