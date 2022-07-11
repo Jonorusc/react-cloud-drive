@@ -84,10 +84,13 @@ function Preview({ file, setPreview, files, setFiles }) {
                 </>
             ) : (
                 <>
-                <div className="preview_image" ref={previewRef}>
-                    {file?.preview?.type && <video src={URL.createObjectURL(file.preview)} controls autoPlay></video>}
-                    {file?.preview && !file.preview?.type && <img src={file.preview} alt="item" />}
-                </div>
+                    <div className="preview_image" ref={previewRef}>
+                        {/* from content */}
+                        {file?.preview && !file?.ObjectURL && <video src={file.preview} controls autoPlay></video>}
+                        
+                        {file?.preview?.type && file?.ObjectURL && <video src={URL.createObjectURL(file.preview)} controls autoPlay></video>}
+                        {file?.preview && file?.ObjectURL && !file?.preview?.type && <img src={file.preview} alt="item" />}
+                    </div>
                 </>
             )}
         </div>

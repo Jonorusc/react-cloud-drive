@@ -97,11 +97,11 @@ function NewsOptions({ type, setView, view }) {
         setPreview({})
         if (video) {
             const video = files[index]
-            setPreview({ preview: video.file, show: true })
+            setPreview({ preview: video.file, show: true, ObjectURL: true })
             return
         }
         const file = files[index]
-        setPreview({ preview: file.preview, show: true })
+        setPreview({ preview: file.preview, show: true, ObjectURL: true })
     }
 
     // showAllInPreview
