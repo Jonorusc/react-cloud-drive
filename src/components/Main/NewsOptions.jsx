@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite'
@@ -8,33 +8,53 @@ import document from '../../images/document.svg'
 import pdf from '../../images/pdf.svg'
 // components
 import Preview from '../Preview/Preview'
-// helpers
 import Upload from '../Upload/Upload'
+import Modal from '../Modal/Modal'
+// helpers
+import Firestore from '../../helpers/Firestore'
+import UserDrive from '../../helpers/userDrive'
 
 function NewsOptions({ type, setView, view }) {
-    const optionsRef = useRef(),
+    const { userDrive } = useContext(UserDrive),
+        optionsRef = useRef(),
         inputRef = useRef(),
         folderInputRef = useRef(),
         bodyFileRef = useRef(),
         gridRef = useRef(),
+        sizeRef = useRef(0),
         [files, setFiles] = useState([]),
         [preview, setPreview] = useState({}),
         [loading, setLoading] = useState(false),
         [upload, setUpload] = useState(false),
-        [uploadStatus, setUploadStatus] = useState('')
+        [uploadStatus, setUploadStatus] = useState(''),
+        [modal, setModal] = useState('')
 
     useEffect(() => {
         setFiles(files)
     }, [files])
 
     useEffect(() => {
-        if(uploadStatus === 'success') {
-            setFiles([]) 
-            setLoading(false)
-            setUpload(false)
-            setView('')
-        }
-    }, [uploadStatus, setView])
+        async function checkUpload() {
+            if(uploadStatus === 'success') {
+                sizeRef.current = 0
+                for(let i = 0; i < files.length; i++) {
+                    sizeRef.current += files[i].file.size
+                }
+                let firesize = await Firestore('get', userDrive?.user)
+                let newsize = firesize.inUse + sizeRef.current
+                Firestore('set', userDrive?.user, {
+                    capacity: firesize.capacity,
+                        inUse: newsize,
+                })
+                setFiles([]) 
+                setLoading(false)
+                setUpload(false)
+                setView('')
+            }
+        } 
+        checkUpload()
+        // eslint-disable-next-line
+    }, [uploadStatus])
 
     //browser files
     function handleFiles(e) {
@@ -86,12 +106,7 @@ function NewsOptions({ type, setView, view }) {
         })
     }
 
-    // remove files from files
-    function removeFromFiles(index) {
-        files.splice(index, 1)
-        setFiles((files) => [...files])
-    }
-
+    
     // showPreview
     function showPreview(index, video = false) {
         setPreview({})
@@ -103,10 +118,32 @@ function NewsOptions({ type, setView, view }) {
         const file = files[index]
         setPreview({ preview: file.preview, show: true, ObjectURL: true })
     }
-
+    
     // showAllInPreview
     function showFullPreview() {
         setPreview({ show: true, all: true })
+    }
+    
+    // remove files from files
+    function removeFromFiles(index) {
+        files.splice(index, 1)
+        setFiles((files) => [...files])
+    }
+
+    async function checkSize() { 
+        sizeRef.current = 0
+        for(let i = 0; i < files.length; i++) {
+            sizeRef.current += files[i].file.size
+        }
+        let firesize = await Firestore('get', userDrive?.user)
+        if(sizeRef.current >= firesize.capacity - firesize.inUse) {
+            // the user can not continue
+            setModal('You do not have space to store all this data, you can delete some items and try again')
+        } else {
+            setUpload(true)
+            setLoading(true)
+            setUploadStatus('')
+        }
     }
 
     return (
@@ -347,9 +384,8 @@ function NewsOptions({ type, setView, view }) {
                                 <button
                                     className="options_body_button"
                                     onClick={() => {
-                                        setUpload(true)
-                                        setLoading(true)
-                                        setUploadStatus('')
+                                        checkSize()
+                                        
                                     }}
                                 >
                                     Upload
@@ -381,6 +417,9 @@ function NewsOptions({ type, setView, view }) {
                     files={files}
                     setFiles={setFiles}
                 />
+            )}
+            {modal && (
+                <Modal message={modal} title='Exceeded your limit' setModal={setModal} />
             )}
         </>
     )
