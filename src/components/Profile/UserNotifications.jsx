@@ -6,7 +6,7 @@ function UserNotifications({ user }) {
     [error, setError] = useState(''),
     sendVerification = async () => {
         try {
-            const { data } = await axios.post('http://localhost:8000/sendverification', {}, {
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND}/sendverification`, {}, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 }
