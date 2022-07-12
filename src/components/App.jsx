@@ -23,6 +23,10 @@ function App() {
             currentFolder: [currentfolder],
             isActive: [], 
             currentFile: '',
+            storage: {
+                capacity: 0,
+                inUse: 0,
+            },
         })
         return (
             <UserDrive.Provider value={{ userDrive, setUserDrive }}>
