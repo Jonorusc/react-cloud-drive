@@ -27,7 +27,7 @@ function ChangePassword({
 
     async function onSubmit(res) {
         try {
-            await axios.post('http://localhost:8000/changepassword', {
+            await axios.post(`${process.env.REACT_APP_BACKEND}/changepassword`, {
                 email: userInfo.email,
                 password: res.password.toString(),
             })
