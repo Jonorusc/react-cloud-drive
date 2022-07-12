@@ -20,7 +20,7 @@ function Aside({ hidesidebar }) {
                 <AsideOption
                     Icon={ArchiveIcon}
                     option="My Drive"
-                    active={window.location.pathname === '/mydrive' ? true : false}
+                    active={(window.location.pathname === '/mydrive' || window.location.pathname === '/') ? true : false}
                     to="/mydrive"
                 />
                 <AsideOption
