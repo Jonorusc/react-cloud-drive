@@ -12,7 +12,7 @@ export default function Registered({ email, rest }) {
         user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
         sendVerification = async () => {
             try {
-                const { data } = await axios.post('http://localhost:8000/sendverification', {}, {
+                const { data } = await axios.post(`${process.env.REACT_APP_BACKEND}/sendverification`, {}, {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
                     }

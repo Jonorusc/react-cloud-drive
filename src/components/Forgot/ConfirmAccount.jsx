@@ -10,7 +10,7 @@ function ConfirmAccount({ setStep, userInfo, setUserInfo, setError, error}) {
             return setError('it is necessary to choose an option')
         
             try {
-                await axios.post('http://localhost:8000/sendresetcode', {
+                await axios.post(`${process.env.REACT_APP_BACKEND}/sendresetcode`, {
                     email: userInfo.email,
                 })
 
