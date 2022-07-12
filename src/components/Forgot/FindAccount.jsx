@@ -29,7 +29,7 @@ function FindAccount({
         try {
             setLoading(true)
             const { data } = await axios.post(
-                'http://localhost:8000/finduser',
+                `${process.env.REACT_APP_BACKEND}/finduser`,
                 {email: res.email.toString()}
             )
             setUserInfo(data)
