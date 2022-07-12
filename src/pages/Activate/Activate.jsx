@@ -23,7 +23,7 @@ function Activate() {
     useEffect(() => {
         const activateAccount = async () => {
             setLoading(true)
-            const { data } =  await axios.post('http://localhost:8000/activate', 
+            const { data } =  await axios.post(`${process.env.REACT_APP_BACKEND}activate`, 
             { token: token.token }, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
