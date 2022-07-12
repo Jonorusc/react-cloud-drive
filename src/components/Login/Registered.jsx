@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import logincomplete from '../../images/login_complete.svg'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import Firestore from '../../helpers/Firestore'
 
 
 export default function Registered({ email, rest }) {
@@ -22,6 +23,18 @@ export default function Registered({ email, rest }) {
                 setError(err.response.data.message)
             }
         }
+
+    useEffect(() => {
+        // create a firestore collection for storage
+        let task = Firestore('set', user.username, {
+            capacity: 150000000,
+            inUse: 0,
+        })
+        if(!task) {
+            console.log('there was an error in firestore')
+        }
+        // eslint-disable-next-line
+    }, [])    
     
     return (
         <div className='registered'>
