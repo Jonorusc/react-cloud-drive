@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
 import { getStorage } from "firebase/storage"
+import { getFirestore } from "firebase/firestore"
 
 const InitiateFirebase = (which = 'realtime') => {
     const firebaseConfig = {
@@ -18,6 +19,8 @@ const InitiateFirebase = (which = 'realtime') => {
             return getStorage(app)
         case 'realtime': 
             return getDatabase(app)
+        case 'firestore': 
+            return getFirestore(app)
         default: return 
     } 
 }

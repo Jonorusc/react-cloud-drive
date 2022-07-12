@@ -12,6 +12,7 @@ import itemsOptions from '../../helpers/itemsOptions'
 import Notification from '../../components/Notification/Notification'
 import Preview from '../Preview/Preview'
 import { saveAs } from 'file-saver'
+import Firestore from '../../helpers/Firestore'
 
 function Content({ url }) {
     const { userDrive, setUserDrive } = useContext(UserDrive),
@@ -24,6 +25,14 @@ function Content({ url }) {
         inputOptionsRef = useRef(),
         itemActionRef = useRef()
     
+    let sizeRef = useRef(0)
+ 
+    
+    useEffect(() => {
+        readFiles()
+        // eslint-disable-next-line
+    }, [])    
+        
     useEffect(() => {
         // getting firebase data and storing in folderListener
         readFiles()
@@ -110,18 +119,22 @@ function Content({ url }) {
             break
             case 'delete':
                 task = new itemsOptions(db, folderListener)
-                task.delete(keys).then(() => {
-                    // refresh
-                    setUserDrive({
-                        ...userDrive,
-                        currentFile: '',
-                        currentFolder: [userDrive.user],
+                task.delete(keys).then((resps) => {
+                    resps.forEach(resp => {
+                        // refresh
+                        setUserDrive({
+                            ...userDrive,
+                            currentFile: '',
+                            currentFolder: [userDrive.user],
+                        })
+                        sizeRef.current += resp.size
+                        setSuccess('Sucessfully')
+                        setItemOptions({})
+                        setTimeout(() => {
+                            setSuccess('')
+                        }, 2000)
                     })
-                    setSuccess('Sucessfully')
-                    setItemOptions({})
-                    setTimeout(() => {
-                        setSuccess('')
-                    }, 2000)
+                    checkSize(sizeRef.current)
                 }).catch(err => {
                     setError('There was an error, try again later...')
                     setTimeout(() => {
@@ -178,6 +191,15 @@ function Content({ url }) {
             setTimeout(() => {
                 setError('')
             }, 2000)
+        })
+    }
+
+    async function checkSize(size) {
+        let firesize = await Firestore('get', userDrive?.user)
+        let newsize = firesize.inUse - size
+        await Firestore('set', userDrive?.user, {
+            capacity: 150000000,
+            inUse: newsize,
         })
     }
 

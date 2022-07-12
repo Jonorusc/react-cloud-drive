@@ -1,12 +1,11 @@
 import InitiateFirebase from "./InitiateFirebase"
-// eslint-disable-next-line
-import { ref, set, get, push, onValue, off, update, remove, child } from 'firebase/database'
-// eslint-disable-next-line
-import { ref as storage_ref, uploadBytes, uploadString, uploadBytesResumable, getDownloadURL, deleteObject, listAll, list } from 'firebase/storage'
+import { ref, set, push, onValue, off, update, remove, child } from 'firebase/database'
+import { ref as storage_ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 
 class ManageDb {
     constructor(user, currentFolder = [], fileName = '') {
         this.db = InitiateFirebase()
+        this.user = user
         this.storage = InitiateFirebase('storage')
         this.ref = ref(this.db, `Users/${user}/${currentFolder.join('/')}`)
         this.storage_ref = storage_ref(this.storage, `Users/${user}/${currentFolder.join('/')}/${fileName}`)

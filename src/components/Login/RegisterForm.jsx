@@ -8,9 +8,6 @@ import axios from 'axios'
 import DotLoader from 'react-spinners/DotLoader'
 import Cookies from 'js-cookie'
 import Registered from './Registered'
-// redux
-// import { useDispatch } from 'react-redux'
-
 
 function RegisterForm({ setVisible }) {
     // const dispatch = useDispatch(),

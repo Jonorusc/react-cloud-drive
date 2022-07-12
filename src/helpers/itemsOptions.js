@@ -1,4 +1,5 @@
 import ManageDb from "../config/ManageDb"
+// import Firestore from "./Firestore"
 
 class itemsOptions {
     constructor(db, folderListener = [], excluded = false) {
@@ -33,16 +34,16 @@ class itemsOptions {
         const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
         manageDb.read(snapshot => {
             snapshot.forEach(item => {
-                if(item?.val().name && item?.val().excluded) {
+                if(item.val().excluded && item.val().name) {
                     this._data.push({
                         key: item.key,
-                        data: item?.val(),
+                        data: item.val(),
                     })
                 }
             })
         })
         return this._data.sort((a,b) => {
-            return (a.data?.type && b.data.type) === 'folder' ? 1 : -1
+            return (a.data.type && b.data.type) === 'folder' ? 1 : -1
         })
     }
 
@@ -244,13 +245,13 @@ class itemsOptions {
                             }
                         })
                     })
-                    
                 } else if(current.data.type === 'file') {
                     const tempFolder = current.data.fullPath.split('/')
                     const file = new ManageDb(this.db.user, tempFolder, current.data.storageName)
                     file.deleteFile().then(() => {
                         file.removeRef(key)
                         resolve({
+                            size: current.data.size,
                             message: 'Success'
                         })
                     }).catch(err => {
@@ -273,7 +274,10 @@ class itemsOptions {
                             let tempFolder = this.db.currentFolder
                             tempFolder.push(folderData.val().name)
                             this.deleteInside(tempFolder).then(() => {
-                                resolve({ message: 'success' })
+                                resolve({ 
+                                    size: folderData.val().size,
+                                    message: 'success' 
+                                })
                             }).catch(err => {
                                 reject(err)
                             })
@@ -283,6 +287,7 @@ class itemsOptions {
                             file.deleteFile().then(() => {
                                 file.removeRef(folderData.key)
                                 resolve({
+                                    size: folderData.val().size,
                                     message: 'Success'
                                 })
                             }).catch(err => {
