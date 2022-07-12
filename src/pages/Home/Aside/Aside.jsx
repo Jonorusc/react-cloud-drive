@@ -30,7 +30,7 @@ function Aside({ hidesidebar }) {
                     to="/mydrive/trash"
                 />
             </div>
-            <Storage ammout="130mb of 150MB" percent={90}/>
+            <Storage />
         </aside>
     )
 }
