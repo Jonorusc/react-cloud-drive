@@ -40,7 +40,7 @@ function LoginForm() {
         try {
             setLoading(true)
             const { data } = await axios.post(
-                'http://localhost:8000/login',
+                `${process.env.REACT_APP_BACKEND}/login`,
                 {email, password}
             )
             
