@@ -18,7 +18,7 @@ function SendCode({ setStep, setCode, error, setError, userInfo }) {
 
     async function onSubmit(res) {
         try {
-            await axios.post('http://localhost:8000/validateresetcode', {
+            await axios.post(`${process.env.REACT_APP_BACKEND}/validateresetcode`, {
                 email: userInfo.email,
                 code: res.code.toString()
             })
