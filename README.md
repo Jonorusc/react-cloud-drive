@@ -8,6 +8,7 @@ Do not forget to use *Cloud-Drive-Backend*: https://github.com/Jonorusc/cloud-dr
 
  - [Figma project](https://www.figma.com/file/5vxpStcUYKiOoHlxBIMF69/Untitled?node-id=8%3A18)
 
+## Deploy: https://react-cloud-drive.netlify.app/
 
 ## run it
 
