@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive"
 import React, { useState } from 'react'
 import LoginInput from './LoginInput'
 import Cookies from 'js-cookie'
-import axios from 'axios'
+import api from '../../api/api'
 // redux
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -39,8 +39,8 @@ function LoginForm() {
     loginSubmit = async () => {
         try {
             setLoading(true)
-            const { data } = await axios.post(
-                `${process.env.REACT_APP_BACKEND}/login`,
+            const { data } = await api.post(
+                '/login',
                 {email, password}
             )
             

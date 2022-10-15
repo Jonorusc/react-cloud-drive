@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import logincomplete from '../../images/login_complete.svg'
 import Cookies from 'js-cookie'
-import axios from 'axios'
+import api from '../../api/api'
 import Firestore from '../../helpers/Firestore'
 
 
@@ -12,7 +12,7 @@ export default function Registered({ email, rest }) {
         user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
         sendVerification = async () => {
             try {
-                const { data } = await axios.post(`${process.env.REACT_APP_BACKEND}/sendverification`, {}, {
+                const { data } = await api.post('/sendverification', {}, {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
                     }
