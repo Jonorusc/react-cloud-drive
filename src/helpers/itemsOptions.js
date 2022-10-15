@@ -7,8 +7,6 @@ class itemsOptions {
         this.excluded = excluded
         this.folderListener = folderListener
         this._data = []
-        this.restoreOrToTrash = this.restoreOrToTrash.bind(this)
-        this.readTrashedItems = this.readTrashedItems.bind(this)
     }
 
     readAllowedItems() {
@@ -29,7 +27,7 @@ class itemsOptions {
         })
     }
 
-    readTrashedItems() {
+    readTrashedItems = () => {
         this._data = []
         const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
         manageDb.read(snapshot => {
@@ -47,7 +45,7 @@ class itemsOptions {
         })
     }
 
-    restoreOrToTrash(keys) {
+    restoreOrToTrash = (keys) => {
         const manageDb = new ManageDb(this.db.user, this.db.currentFolder)
         let current, promises = []
 
