@@ -164,9 +164,13 @@ function Content({ url }) {
         }
         // eslint-disable-next-line
     }, [itemOptions])
-
+    
+    useClickOutside(itemActionRef, () => {
+        setItemOptions({})
+    })
+    
     // rename
-    function renameFile() {
+    const renameFile = () => {
         const db = {
                 user: userDrive?.user,
                 currentFolder: userDrive?.currentFolder,
@@ -205,10 +209,6 @@ function Content({ url }) {
             inUse: newsize,
         })
     }
-
-    useClickOutside(itemActionRef, () => {
-        setItemOptions({})
-    })
 
     const getFileType = (file) => {
         return (file.data.contentType) ? file.data.contentType.substr(file.data.contentType.lastIndexOf('/')).replace('/', '.') : ''
