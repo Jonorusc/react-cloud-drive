@@ -1,4 +1,4 @@
-export default function contentReducer(state, action) {
+export default function contentReducer(state = {}, action) {
     switch(action.type) {
         case 'CONTENT_REQUEST':
             return {
