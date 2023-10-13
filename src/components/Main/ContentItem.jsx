@@ -23,7 +23,6 @@ function ContentItem({ title, preview, item, index, active, setItemOptions, url 
   })
 
   const onDblClick = (e) => {
-    console.log("double")
     switch (item?.data?.type) {
       case "folder":
         const current = userDrive?.currentFolder
